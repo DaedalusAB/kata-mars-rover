@@ -22,14 +22,5 @@ namespace MarsRoverTests
 
             Assert.NotEqual(position2, position1);
         }
-
-        [Fact]
-        public void CreateRoverWithDefaultPosition()
-        {
-            var rover = new Rover();
-            var defaultPosition = new Position(0, 0, DirectionEnum.North);
-
-            Assert.Equal(defaultPosition, rover.Position);
-        }
     }
 }

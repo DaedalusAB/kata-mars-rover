@@ -8,5 +8,10 @@
         {
             Position = new Position(0, 0, DirectionEnum.North);
         }
+
+        public Rover(Position position)
+        {
+            Position = position;
+        }
     }
 }
