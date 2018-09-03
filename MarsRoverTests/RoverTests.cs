@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MarsRover;
 using Xunit;
 
@@ -26,30 +27,44 @@ namespace MarsRoverTests
         }
 
         [Theory]
-        [InlineData("F")]
-        public void RoverReceievesCommands(string commands)
+        [MemberData(nameof(ExampleCommands))]
+        public void RoverReceievesCommands(List<char> commands)
         {
             var rover = new Rover();
             rover.SendCommands(commands);
 
-            Assert.Equal(commands, rover.Commands);
+            Assert.True(rover.Commands.SequenceEqual(commands));
         }
 
         [Theory]
-        [InlineData("F", "FFB")]
-        public void RoverReceievesAdditionalCommands(string initialCommands, string additionalCommands)
+        [MemberData(nameof(DoubleCommands))]
+        public void RoverReceievesAdditionalCommands(List<char> initialCommands, List<char> additionalCommands)
         {
             var rover = new Rover();
             rover.SendCommands(initialCommands);
             rover.SendCommands(additionalCommands);
 
-            Assert.Equal(initialCommands + additionalCommands, rover.Commands);
+            initialCommands.AddRange(additionalCommands);
+
+            Assert.True(rover.Commands.SequenceEqual(initialCommands));
         }
 
         public static IEnumerable<object[]> InitRoverCase()
         {
             yield return new object[] { new Position(0, 0, DirectionEnum.North) };
             yield return new object[] { new Position(1, 5, DirectionEnum.East) };
+        }
+
+        public static IEnumerable<object[]> ExampleCommands()
+        {
+            yield return new object[] { new List<char>() { 'f' } };
+            yield return new object[] { new List<char>() { 'f', 'b', 'f', 'f' } };
+        }
+
+        public static IEnumerable<object[]> DoubleCommands()
+        {
+            yield return new object[] { new List<char>() { 'f' }, new List<char>() { 'f' } };
+            yield return new object[] { new List<char>() { 'f', 'b' }, new List<char>() { 'b', 'f' } };
         }
     }
 }
