@@ -25,6 +25,27 @@ namespace MarsRoverTests
             Assert.Equal(position, rover.Position);
         }
 
+        [Theory]
+        [InlineData("F")]
+        public void RoverReceievesCommands(string commands)
+        {
+            var rover = new Rover();
+            rover.SendCommands(commands);
+
+            Assert.Equal(commands, rover.Commands);
+        }
+
+        [Theory]
+        [InlineData("F", "FFB")]
+        public void RoverReceievesAdditionalCommands(string initialCommands, string additionalCommands)
+        {
+            var rover = new Rover();
+            rover.SendCommands(initialCommands);
+            rover.SendCommands(additionalCommands);
+
+            Assert.Equal(initialCommands + additionalCommands, rover.Commands);
+        }
+
         public static IEnumerable<object[]> InitRoverCase()
         {
             yield return new object[] { new Position(0, 0, DirectionEnum.North) };
