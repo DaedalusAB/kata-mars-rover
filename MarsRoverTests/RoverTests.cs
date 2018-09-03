@@ -51,12 +51,22 @@ namespace MarsRoverTests
 
         [Theory]
         [MemberData(nameof(MoveForwardCases))]
-        public void RoverMovesForward(Position startingPosition, Position resultingPosition)
+        public void RoverMovesForward(Position position1, Position position2)
         {
-            var rover = new Rover(startingPosition);
+            var rover = new Rover(position1);
             rover.MoveForward();
 
-            Assert.Equal(resultingPosition, rover.Position);
+            Assert.Equal(position2, rover.Position);
+        }
+
+        [Theory]
+        [MemberData(nameof(MoveForwardCases))]
+        public void RoverMovesBackwards(Position position2, Position position1)
+        {
+            var rover = new Rover(position1);
+            rover.MoveBackward();
+
+            Assert.Equal(position2, rover.Position);
         }
 
         public static IEnumerable<object[]> InitRoverCase()
@@ -84,6 +94,5 @@ namespace MarsRoverTests
             yield return new object[] { new Position(1, 0, DirectionEnum.West), new Position(0, 0, DirectionEnum.West) };
             yield return new object[] { new Position(0, 1, DirectionEnum.South), new Position(0, 0, DirectionEnum.South) };
         }
-
     }
 }

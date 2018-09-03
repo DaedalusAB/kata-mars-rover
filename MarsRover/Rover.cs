@@ -44,5 +44,26 @@ namespace MarsRover
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        public void MoveBackward()
+        {
+            switch (Position.Direction)
+            {
+                case DirectionEnum.North:
+                    Position = new Position(Position.X, Position.Y - 1, Position.Direction);
+                    break;
+                case DirectionEnum.South:
+                    Position = new Position(Position.X, Position.Y + 1, Position.Direction);
+                    break;
+                case DirectionEnum.West:
+                    Position = new Position(Position.X + 1, Position.Y, Position.Direction);
+                    break;
+                case DirectionEnum.East:
+                    Position = new Position(Position.X - 1, Position.Y, Position.Direction);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }
