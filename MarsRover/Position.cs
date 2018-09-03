@@ -1,31 +1,67 @@
-﻿namespace MarsRover
+﻿using System;
+
+namespace MarsRover
 {
     public class Position
     {
-        public int X { get; }
-        public int Y { get; }
-        public DirectionEnum Direction { get; }
+        public Coordinates Coordinates { get; set; }
+        public DirectionEnum Direction { get; set; }
 
         public Position(int x, int y, DirectionEnum direction)
         {
-            X = x;
-            Y = y;
+            Coordinates = new Coordinates(x, y);
             Direction = direction;
+        }
+
+        public Coordinates CoordinatesInFront()
+        {
+            switch (Direction)
+            {
+                case (DirectionEnum.North):
+                    return new Coordinates(Coordinates.X, Coordinates.Y + 1);
+                case (DirectionEnum.South):
+                    return new Coordinates(Coordinates.X, Coordinates.Y - 1);
+                case (DirectionEnum.East):
+                    return new Coordinates(Coordinates.X + 1, Coordinates.Y);
+                case (DirectionEnum.West):
+                    return new Coordinates(Coordinates.X - 1, Coordinates.Y);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public Coordinates CoordinatesBehind()
+        {
+            switch (Direction)
+            {
+                case (DirectionEnum.North):
+                    return new Coordinates(Coordinates.X, Coordinates.Y - 1);
+                case (DirectionEnum.South):
+                    return new Coordinates(Coordinates.X, Coordinates.Y + 1);
+                case (DirectionEnum.East):
+                    return new Coordinates(Coordinates.X - 1, Coordinates.Y);
+                case (DirectionEnum.West):
+                    return new Coordinates(Coordinates.X + 1, Coordinates.Y);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Position position && (X == position.X && Y == position.Y && Direction == position.Direction);
+            return obj is Position position && Coordinates.Equals(position.Coordinates) && Direction == position.Direction;
+        }
+
+        protected bool Equals(Position other)
+        {
+            return Equals(Coordinates, other.Coordinates) && Direction == other.Direction;
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hashCode = X;
-                hashCode = (hashCode * 397) ^ Y;
-                hashCode = (hashCode * 397) ^ (int)Direction;
-                return hashCode;
+                return ((Coordinates != null ? Coordinates.GetHashCode() : 0) * 397) ^ (int)Direction;
             }
         }
     }
