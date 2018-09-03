@@ -2,29 +2,29 @@
 {
     public class Position
     {
-        private readonly int _x;
-        private readonly int _y;
-        private readonly DirectionEnum _direction;
+        public int X { get; }
+        public int Y { get; }
+        public DirectionEnum Direction { get; }
 
         public Position(int x, int y, DirectionEnum direction)
         {
-            _x = x;
-            _y = y;
-            _direction = direction;
+            X = x;
+            Y = y;
+            Direction = direction;
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Position position && (_x == position._x && _y == position._y && _direction == position._direction);
+            return obj is Position position && (X == position.X && Y == position.Y && Direction == position.Direction);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                var hashCode = _x;
-                hashCode = (hashCode * 397) ^ _y;
-                hashCode = (hashCode * 397) ^ (int) _direction;
+                var hashCode = X;
+                hashCode = (hashCode * 397) ^ Y;
+                hashCode = (hashCode * 397) ^ (int)Direction;
                 return hashCode;
             }
         }

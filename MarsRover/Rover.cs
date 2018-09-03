@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MarsRover
 {
@@ -21,6 +22,27 @@ namespace MarsRover
         public void SendCommands(List<char> commands)
         {
             Commands.AddRange(commands);
+        }
+
+        public void MoveForward()
+        {
+            switch (Position.Direction)
+            {
+                case DirectionEnum.North:
+                    Position = new Position(Position.X, Position.Y + 1, Position.Direction);
+                    break;
+                case DirectionEnum.South:
+                    Position = new Position(Position.X, Position.Y - 1, Position.Direction);
+                    break;
+                case DirectionEnum.West:
+                    Position = new Position(Position.X - 1, Position.Y, Position.Direction);
+                    break;
+                case DirectionEnum.East:
+                    Position = new Position(Position.X + 1, Position.Y, Position.Direction);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }
