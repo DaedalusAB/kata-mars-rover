@@ -19,7 +19,7 @@ namespace MarsRoverTests
                 .ForRover(rover)
                 .Build();
 
-            roverControl.SendCommands(new List<char>() { 'f' });
+            roverControl.SendCommands("f");
             roverControl.InvokeCommands();
 
             Assert.Equal(positionAfterWrap, rover.Position);
@@ -36,7 +36,7 @@ namespace MarsRoverTests
                 .ForRover(rover)
                 .Build();
 
-            roverControl.SendCommands(new List<char>() { 'b' });
+            roverControl.SendCommands("b");
             roverControl.InvokeCommands();
 
             Assert.Equal(positionAfterWrap, rover.Position);

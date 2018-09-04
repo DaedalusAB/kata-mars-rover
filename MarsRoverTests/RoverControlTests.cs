@@ -20,8 +20,7 @@ namespace MarsRoverTests
                 .ForRover(rover)
                 .Build();
 
-            var commands = new List<char>() { 'f', 'b' };
-            roverControl.SendCommands(commands);
+            roverControl.SendCommands("fb");
             
             Assert.Equal(2, roverControl.Commands.Count);
             Assert.Contains(roverControl.Commands, command => command is RoverCommandForward);
@@ -39,7 +38,8 @@ namespace MarsRoverTests
                 .ForRover(rover)
                 .Build();
 
-            roverControl.SendCommands(new List<char>() { 'f' });
+
+            roverControl.SendCommands("f");
             roverControl.InvokeCommands();
 
             Assert.Equal(positionAfterMovement, rover.Position);
@@ -57,7 +57,7 @@ namespace MarsRoverTests
                 .ForRover(rover)
                 .Build();
 
-            roverControl.SendCommands(new List<char>() { 'b' });
+            roverControl.SendCommands("B");
             roverControl.InvokeCommands();
 
             Assert.Equal(positionAfterMovement, rover.Position);

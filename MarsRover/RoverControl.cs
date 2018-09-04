@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MarsRover.Commands;
 
 namespace MarsRover
@@ -15,7 +14,7 @@ namespace MarsRover
             Commands = new List<RoverCommand>();
         }
 
-        public void SendCommands(List<char> commands)
+        public void SendCommands(IEnumerable<char> commands)
         {
             foreach (var command in commands)
             {
