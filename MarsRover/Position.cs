@@ -7,23 +7,23 @@ namespace MarsRover
         public Coordinates Coordinates { get; set; }
         public Direction Direction { get; set; }
 
-        public Position(int x, int y, int directionValue)
+        public Position(int x, int y, DirectionEnum direction)
         {
             Coordinates = new Coordinates(x, y);
-            Direction = new Direction(directionValue);
+            Direction = new Direction(direction);
         }
 
         public Coordinates CoordinatesInFront()
         {
             switch (Direction.Value)
             {
-                case (Direction.NORTH):
+                case (DirectionEnum.North):
                     return new Coordinates(Coordinates.X, Coordinates.Y + 1);
-                case (Direction.SOUTH):
+                case (DirectionEnum.South):
                     return new Coordinates(Coordinates.X, Coordinates.Y - 1);
-                case (Direction.EAST):
+                case (DirectionEnum.East):
                     return new Coordinates(Coordinates.X + 1, Coordinates.Y);
-                case (Direction.WEST):
+                case (DirectionEnum.West):
                     return new Coordinates(Coordinates.X - 1, Coordinates.Y);
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -34,13 +34,13 @@ namespace MarsRover
         {
             switch (Direction.Value)
             {
-                case (Direction.NORTH):
+                case (DirectionEnum.North):
                     return new Coordinates(Coordinates.X, Coordinates.Y - 1);
-                case (Direction.SOUTH):
+                case (DirectionEnum.South):
                     return new Coordinates(Coordinates.X, Coordinates.Y + 1);
-                case (Direction.EAST):
+                case (DirectionEnum.East):
                     return new Coordinates(Coordinates.X - 1, Coordinates.Y);
-                case (Direction.WEST):
+                case (DirectionEnum.West):
                     return new Coordinates(Coordinates.X + 1, Coordinates.Y);
                 default:
                     throw new ArgumentOutOfRangeException();

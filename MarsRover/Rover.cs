@@ -10,7 +10,7 @@ namespace MarsRover
 
         public Rover()
         {
-            Position = new Position(0, 0, Direction.NORTH);
+            Position = new Position(0, 0, DirectionEnum.North);
             Commands = new List<char>();
         }
 

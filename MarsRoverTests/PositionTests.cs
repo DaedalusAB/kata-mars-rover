@@ -9,8 +9,8 @@ namespace MarsRoverTests
         [Fact]
         public void CompareSamePositions()
         {
-            var position1 = new Position(1, 1, Direction.EAST);
-            var position2 = new Position(1, 1, Direction.EAST);
+            var position1 = new Position(1, 1, DirectionEnum.East);
+            var position2 = new Position(1, 1, DirectionEnum.East);
 
             Assert.Equal(position2, position1);
         }
@@ -18,8 +18,8 @@ namespace MarsRoverTests
         [Fact]
         public void CompareDifferentPositions()
         {
-            var position1 = new Position(1, 1, Direction.WEST);
-            var position2 = new Position(1, 1, Direction.SOUTH);
+            var position1 = new Position(1, 1, DirectionEnum.West);
+            var position2 = new Position(1, 1, DirectionEnum.South);
 
             Assert.NotEqual(position2, position1);
         }
@@ -28,7 +28,7 @@ namespace MarsRoverTests
         [MemberData(nameof(CoordinatesInFrontCases))]
         public void GetCoordinatesInFront(Position position, Coordinates coordinatesInFront)
         {
-            Assert.True(position.CoordinatesInFront().Equals(coordinatesInFront));
+            Assert.True(position.CoordinatesInFront().Equals(coordinatesInFront));  // assert.equals (and bellow)
         }
 
         [Theory]
@@ -40,18 +40,18 @@ namespace MarsRoverTests
 
         public static IEnumerable<object[]> CoordinatesInFrontCases()
         {
-            yield return new object[] { new Position(0, 0, Direction.EAST), new Coordinates(1, 0) };
-            yield return new object[] { new Position(0, 0, Direction.NORTH), new Coordinates(0, 1) };
-            yield return new object[] { new Position(1, 0, Direction.WEST), new Coordinates(0, 0) };
-            yield return new object[] { new Position(0, 1, Direction.SOUTH), new Coordinates(0, 0) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.East), new Coordinates(1, 0) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.North), new Coordinates(0, 1) };
+            yield return new object[] { new Position(1, 0, DirectionEnum.West), new Coordinates(0, 0) };
+            yield return new object[] { new Position(0, 1, DirectionEnum.South), new Coordinates(0, 0) };
         }
 
         public static IEnumerable<object[]> CoordinatesBehindCases()
         {
-            yield return new object[] { new Position(1, 0, Direction.EAST), new Coordinates(0, 0) };
-            yield return new object[] { new Position(0, 1, Direction.NORTH), new Coordinates(0, 0) };
-            yield return new object[] { new Position(0, 0, Direction.WEST), new Coordinates(1, 0) };
-            yield return new object[] { new Position(0, 0, Direction.SOUTH), new Coordinates(0, 1) };
+            yield return new object[] { new Position(1, 0, DirectionEnum.East), new Coordinates(0, 0) };
+            yield return new object[] { new Position(0, 1, DirectionEnum.North), new Coordinates(0, 0) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.West), new Coordinates(1, 0) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.South), new Coordinates(0, 1) };
         }
     }
 }

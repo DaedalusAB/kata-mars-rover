@@ -8,11 +8,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesForwardFacingNorth()
         {
-            var initialPosition = new Position(0, 0, Direction.NORTH);
+            var initialPosition = new Position(0, 0, DirectionEnum.North);
             var rover = new Rover(initialPosition);
             rover.MoveForward();
 
-            var destination = new Position(0, 1, Direction.NORTH);
+            var destination = new Position(0, 1, DirectionEnum.North);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -20,11 +20,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesForwardFacingSouth()
         {
-            var initialPosition = new Position(0, 1, Direction.SOUTH);
+            var initialPosition = new Position(0, 1, DirectionEnum.South);
             var rover = new Rover(initialPosition);
             rover.MoveForward();
 
-            var destination = new Position(0, 0, Direction.SOUTH);
+            var destination = new Position(0, 0, DirectionEnum.South);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -32,11 +32,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesForwardFacingEast()
         {
-            var initialPosition = new Position(0, 0, Direction.EAST);
+            var initialPosition = new Position(0, 0, DirectionEnum.East);
             var rover = new Rover(initialPosition);
             rover.MoveForward();
 
-            var destination = new Position(1, 0, Direction.EAST);
+            var destination = new Position(1, 0, DirectionEnum.East);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -44,11 +44,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesForwardFacingWest()
         {
-            var initialPosition = new Position(1, 0, Direction.WEST);
+            var initialPosition = new Position(1, 0, DirectionEnum.West);
             var rover = new Rover(initialPosition);
             rover.MoveForward();
 
-            var destination = new Position(0, 0, Direction.WEST);
+            var destination = new Position(0, 0, DirectionEnum.West);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -56,11 +56,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesBackwardsFacingNorth()
         {
-            var initialPosition = new Position(0, 1, Direction.NORTH);
+            var initialPosition = new Position(0, 1, DirectionEnum.North);
             var rover = new Rover(initialPosition);
             rover.MoveBackwards();
 
-            var destination = new Position(0, 0, Direction.NORTH);
+            var destination = new Position(0, 0, DirectionEnum.North);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -68,11 +68,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesBackwardsFacingSouth()
         {
-            var initialPosition = new Position(0, 0, Direction.SOUTH);
+            var initialPosition = new Position(0, 0, DirectionEnum.South);
             var rover = new Rover(initialPosition);
             rover.MoveBackwards();
 
-            var destination = new Position(0, 1, Direction.SOUTH);
+            var destination = new Position(0, 1, DirectionEnum.South);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -80,11 +80,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesBackwardsFacingEast()
         {
-            var initialPosition = new Position(1, 0, Direction.EAST);
+            var initialPosition = new Position(1, 0, DirectionEnum.East);
             var rover = new Rover(initialPosition);
             rover.MoveBackwards();
 
-            var destination = new Position(0, 0, Direction.EAST);
+            var destination = new Position(0, 0, DirectionEnum.East);
 
             Assert.Equal(destination, rover.Position);
         }
@@ -92,11 +92,11 @@ namespace MarsRoverTests
         [Fact]
         public void RoverMovesBackwardsFacingWest()
         {
-            var initialPosition = new Position(0, 0, Direction.WEST);
+            var initialPosition = new Position(0, 0, DirectionEnum.West);
             var rover = new Rover(initialPosition);
             rover.MoveBackwards();
 
-            var destination = new Position(1, 0, Direction.WEST);
+            var destination = new Position(1, 0, DirectionEnum.West);
 
             Assert.Equal(destination, rover.Position);
         }

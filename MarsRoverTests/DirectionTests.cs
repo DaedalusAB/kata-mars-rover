@@ -8,20 +8,13 @@ namespace MarsRoverTests
     public class DirectionTests
     {
         [Fact]
-        public void CannotCreateInvalidDirection()
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Direction(5));
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Direction(-1));
-        }
-
-        [Fact]
         public void NorthTurnRightShouldFaceEast()
         {
-            var direction = new Direction(Direction.NORTH);
+            var direction = new Direction(DirectionEnum.North);
 
             direction.TurnRight();
            
-            var newDirection = new Direction(Direction.EAST);
+            var newDirection = new Direction(DirectionEnum.East);
             
             Assert.Equal(newDirection, direction);
         }
@@ -29,11 +22,11 @@ namespace MarsRoverTests
         [Fact]
         public void EastTurnRightShouldFaceSouth()
         {
-            var direction = new Direction(Direction.EAST);
+            var direction = new Direction(DirectionEnum.East);
 
             direction.TurnRight();
 
-            var newDirection = new Direction(Direction.SOUTH);
+            var newDirection = new Direction(DirectionEnum.South);
 
             Assert.Equal(newDirection, direction);
         }
@@ -41,11 +34,11 @@ namespace MarsRoverTests
         [Fact]
         public void SouthTurnRightShouldFaceWest()
         {
-            var direction = new Direction(Direction.SOUTH);
+            var direction = new Direction(DirectionEnum.South);
 
             direction.TurnRight();
 
-            var newDirection = new Direction(Direction.WEST);
+            var newDirection = new Direction(DirectionEnum.West);
 
             Assert.Equal(newDirection, direction);
         }
@@ -53,11 +46,11 @@ namespace MarsRoverTests
         [Fact]
         public void WestTurnRightShouldFaceNorth()
         {
-            var direction = new Direction(Direction.WEST);
+            var direction = new Direction(DirectionEnum.West);
 
             direction.TurnRight();
 
-            var newDirection = new Direction(Direction.NORTH);
+            var newDirection = new Direction(DirectionEnum.North);
 
             Assert.Equal(newDirection, direction);
         }
@@ -67,11 +60,11 @@ namespace MarsRoverTests
         [Fact]
         public void NorthTurnLeftShouldFaceWest()
         {
-            var direction = new Direction(Direction.NORTH);
+            var direction = new Direction(DirectionEnum.North);
 
             direction.TurnLeft();
 
-            var newDirection = new Direction(Direction.WEST);
+            var newDirection = new Direction(DirectionEnum.West);
 
             Assert.Equal(newDirection, direction);
         }
@@ -79,11 +72,11 @@ namespace MarsRoverTests
         [Fact]
         public void EastTurnLeftShouldFaceNorth()
         {
-            var direction = new Direction(Direction.EAST);
+            var direction = new Direction(DirectionEnum.East);
 
             direction.TurnLeft();
 
-            var newDirection = new Direction(Direction.NORTH);
+            var newDirection = new Direction(DirectionEnum.North);
 
             Assert.Equal(newDirection, direction);
         }
@@ -91,11 +84,11 @@ namespace MarsRoverTests
         [Fact]
         public void SouthTurnLeftShouldFaceEast()
         {
-            var direction = new Direction(Direction.SOUTH);
+            var direction = new Direction(DirectionEnum.South);
 
             direction.TurnLeft();
 
-            var newDirection = new Direction(Direction.EAST);
+            var newDirection = new Direction(DirectionEnum.East);
 
             Assert.Equal(newDirection, direction);
         }
@@ -103,11 +96,11 @@ namespace MarsRoverTests
         [Fact]
         public void WestTurnLeftShouldFaceSouth()
         {
-            var direction = new Direction(Direction.WEST);
+            var direction = new Direction(DirectionEnum.West);
 
             direction.TurnLeft();
 
-            var newDirection = new Direction(Direction.SOUTH);
+            var newDirection = new Direction(DirectionEnum.South);
 
             Assert.Equal(newDirection, direction);
         }

@@ -4,37 +4,27 @@ namespace MarsRover
 {
     public class Direction
     {
-        public const int NORTH = 0;
-        public const int EAST = 1;
-        public const int SOUTH = 2;
-        public const int WEST = 3;
+        public DirectionEnum Value { get; set; }
 
-        public int Value { get; set; }
-
-        public Direction(int value)
+        public Direction(DirectionEnum value)
         {
-            if (value < 0 || value > 3)
-            {
-                throw new ArgumentOutOfRangeException(nameof(value));
-            }
-
             Value = value;
         }
 
         public void TurnRight()
         {
-            Value = (Value + 1) % 4;
+            Value = (DirectionEnum)(((int)Value + 1) % 4);
         }
 
         public void TurnLeft()
         {
-            if (Value == Direction.NORTH)
+            if (Value == DirectionEnum.North)
             {
-                Value = Direction.WEST;
+                Value = DirectionEnum.West;
                 return;
             }
 
-            Value = (Value - 1) % 4;
+            Value = (DirectionEnum)(((int)Value - 1) % 4);
         }
 
         public override bool Equals(object obj)
@@ -42,14 +32,14 @@ namespace MarsRover
             return obj is Direction direction && Value == direction.Value;
         }
 
+        public override int GetHashCode()
+        {
+            return (int) Value;
+        }
+
         protected bool Equals(Direction other)
         {
             return Value == other.Value;
-        }
-
-        public override int GetHashCode()
-        {
-            return Value;
         }
     }
 }
