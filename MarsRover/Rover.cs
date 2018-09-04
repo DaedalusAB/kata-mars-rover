@@ -13,24 +13,15 @@ namespace MarsRover
             Position = position;
         }
 
-        public void MoveForward()
-        {
+        public void MoveForward() =>
             Position.Coordinates = Position.CoordinatesInFront();
-        }
 
-        public void MoveBackwards()
-        {
+        public void MoveBackwards() =>
             Position.Coordinates = Position.CoordinatesBehind();
-        }
+        
 
-        public void TurnRight()
-        {
-            Position.Direction.TurnRight();
-        }
+        public void TurnRight() => Position.Direction.TurnRight();
 
-        public void TurnLeft()
-        {
-            Position.Direction.TurnLeft();
-        }
+        public void TurnLeft() => Position.Direction.TurnLeft();
     }
 }

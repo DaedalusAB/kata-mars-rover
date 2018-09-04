@@ -1,4 +1,6 @@
-﻿namespace MarsRover.Positioning
+﻿using System;
+
+namespace MarsRover.Positioning
 {
     public class Coordinates
     {
@@ -11,22 +13,11 @@
             Y = y;
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is Coordinates coordinates && X == coordinates.X && Y == coordinates.Y;
-        }
+        public override bool Equals(object obj) =>
+            obj is Coordinates coordinates && X == coordinates.X && Y == coordinates.Y;
 
-        protected bool Equals(Coordinates other)
-        {
-            return X == other.X && Y == other.Y;
-        }
 
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (X * 397) ^ Y;
-            }
-        }
+        public override int GetHashCode() =>
+            throw new NotImplementedException();
     }
 }

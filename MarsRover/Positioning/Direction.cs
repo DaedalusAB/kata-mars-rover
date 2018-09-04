@@ -1,4 +1,6 @@
-﻿namespace MarsRover.Positioning
+﻿using System;
+
+namespace MarsRover.Positioning
 {
     public class Direction
     {
@@ -47,19 +49,10 @@
             }
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is Direction direction && Value == direction.Value;
-        }
+        public override bool Equals(object obj) =>
+            obj is Direction direction && Value == direction.Value;
 
-        public override int GetHashCode()
-        {
-            return (int) Value;
-        }
-
-        protected bool Equals(Direction other)
-        {
-            return Value == other.Value;
-        }
+        public override int GetHashCode() =>
+            throw new NotImplementedException();
     }
 }
