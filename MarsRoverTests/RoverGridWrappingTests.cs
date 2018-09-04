@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using MarsRover;
 using MarsRover.Positioning;
 using MarsRoverTests.Builders;
 using Xunit;
 
 namespace MarsRoverTests
 {
-    public class RoverWithGridTests
+    public class RoverGridWrappingTests
     {
         [Theory]
         [MemberData(nameof(RoverWrapsGridMovingForwardCases))]
