@@ -15,7 +15,7 @@ namespace MarsRoverTests.Builders
 
         public RoverBuilder AtPosition(Position position)
         {
-            _rover = new Rover(position);
+            _rover = new Rover(new Position(position.Coordinates.X, position.Coordinates.Y, position.Direction.Value, position.Grid));
             return this;
         }
 

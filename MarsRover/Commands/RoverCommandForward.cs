@@ -6,9 +6,9 @@
         {
         }
 
-        public override void Execute()
+        public override bool Execute()
         {
-            _rover.MoveForward();
+            return _rover.MoveForward();
         }
     }
 }

@@ -13,15 +13,43 @@ namespace MarsRover
             Position = position;
         }
 
-        public void MoveForward() =>
-            Position.Coordinates = Position.CoordinatesInFront();
+        public bool CanMoveForward() =>
+            !Position.HasObstacleInFront();
 
-        public void MoveBackwards() =>
-            Position.Coordinates = Position.CoordinatesBehind();
-        
+        public bool CanMoveBackwards() =>
+            !Position.HasObstacleBehind();
 
-        public void TurnRight() => Position.Direction.TurnRight();
+        public bool MoveForward()
+        {
+            if (CanMoveForward())
+            {
+                Position.Coordinates = Position.CoordinatesInFront();
+            }
 
-        public void TurnLeft() => Position.Direction.TurnLeft();
+            return CanMoveForward();
+        }
+
+        public bool MoveBackwards()
+        {
+            if (CanMoveBackwards())
+            {
+                Position.Coordinates = Position.CoordinatesBehind();
+            }
+
+            return CanMoveBackwards();
+        }
+
+        public bool TurnRight()
+        {
+            Position.Direction.TurnRight();
+            return true;
+        }
+
+
+        public bool TurnLeft()
+        {
+            Position.Direction.TurnLeft();
+            return true;
+        }
     }
 }

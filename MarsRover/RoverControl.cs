@@ -22,12 +22,18 @@ namespace MarsRover
             }
         }
 
-        public void InvokeCommands()
+        public bool InvokeCommands()
         {
             foreach (var roverCommand in Commands)
             {
-                roverCommand.Execute();
+                if (!roverCommand.Execute())
+                {
+                    Commands.Clear();
+                    return true;
+                }
             }
+
+            return false;
         }
     }
 }

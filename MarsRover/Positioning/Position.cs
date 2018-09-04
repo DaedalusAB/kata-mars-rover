@@ -7,7 +7,7 @@ namespace MarsRover.Positioning
         public Coordinates Coordinates { get; set; }
         public Direction Direction { get; set; }
 
-        private Grid Grid { get; }
+        public Grid Grid { get; }
 
         public Position(int x, int y, DirectionEnum direction, Grid grid)
         {
@@ -15,6 +15,12 @@ namespace MarsRover.Positioning
             Coordinates = new Coordinates(x, y);
             Direction = new Direction(direction);
         }
+
+        public bool HasObstacleInFront() =>
+            Grid.HasObstacle(CoordinatesInFront());
+
+        public bool HasObstacleBehind() =>
+            Grid.HasObstacle(CoordinatesBehind());
 
         public Coordinates CoordinatesInFront()
         {
@@ -61,18 +67,15 @@ namespace MarsRover.Positioning
                 ? new Coordinates(Coordinates.X, Coordinates.Y + 1)
                 : new Coordinates(Coordinates.X, 0);
 
-
         private Coordinates CoordinatesSouth() =>
             Coordinates.Y - 1 >= 0
                 ? new Coordinates(Coordinates.X, Coordinates.Y - 1)
                 : new Coordinates(Coordinates.X, Grid.Height - 1);
 
-
         private Coordinates CoordinatesEast() =>
             Grid.Width > Coordinates.X + 1
                 ? new Coordinates(Coordinates.X + 1, Coordinates.Y)
                 : new Coordinates(0, Coordinates.Y);
-
 
         private Coordinates CoordinatesWest() =>
             Coordinates.X - 1 >= 0

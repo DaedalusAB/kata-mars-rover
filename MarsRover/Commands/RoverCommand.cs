@@ -9,6 +9,6 @@
             _rover = rover;
         }
 
-        public abstract void Execute();
+        public abstract bool Execute();
     }
 }
