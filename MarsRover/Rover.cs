@@ -29,7 +29,7 @@ namespace MarsRover
             Position.Coordinates = Position.CoordinatesInFront();
         }
 
-        public void MoveBackward()
+        public void MoveBackwards()
         {
             Position.Coordinates = Position.CoordinatesBehind();
         }
