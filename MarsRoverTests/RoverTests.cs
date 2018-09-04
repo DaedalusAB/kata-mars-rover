@@ -1,5 +1,6 @@
 ﻿using MarsRover;
 using MarsRover.Positioning;
+using MarsRoverTests.Builders;
 using Xunit;
 
 namespace MarsRoverTests
@@ -9,9 +10,12 @@ namespace MarsRoverTests
         [Fact]
         public void CreateRoverAtPosition()
         {
-            var grid = new Grid(1, 1);
-            var position = new Position(1, 1, DirectionEnum.North, grid);
-            var rover = new Rover(position);
+            var position = new PositionBuilder()
+                .DefaultPosition()
+                .Build();
+            var rover = new RoverBuilder()
+                .AtPosition(position)
+                .Build();
 
             Assert.Equal(position, rover.Position);
         }

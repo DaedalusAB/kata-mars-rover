@@ -3,6 +3,7 @@ using System.Linq;
 using MarsRover;
 using MarsRover.Commands;
 using MarsRover.Positioning;
+using MarsRoverTests.Builders;
 using Xunit;
 
 namespace MarsRoverTests
@@ -12,10 +13,17 @@ namespace MarsRoverTests
         [Fact]
         public void RoverReceievesCommands()
         {
-            var startingPosition = new Position(0, 0, DirectionEnum.East, new Grid(1, 1));
-            var rover = new Rover(startingPosition);
+            var startingPosition = new PositionBuilder()
+                .DefaultPosition()
+                .Build();
+            var rover = new RoverBuilder()
+                .AtPosition(startingPosition)
+                .Build();
+            var roverControl = new RoverControlBuilder()
+                .ForRover(rover)
+                .Build();
+
             var commands = new List<char>() { 'f', 'b' };
-            var roverControl = new RoverControl(rover);
             roverControl.SendCommands(commands);
             
             Assert.Equal(2, roverControl.Commands.Count);
@@ -27,8 +35,12 @@ namespace MarsRoverTests
         [MemberData(nameof(RoverMovesForwardCases))]
         public void RoverMovesForward(Position startingPosition, Position positionAfterMovement)
         {
-            var rover = new Rover(startingPosition);
-            var roverControl = new RoverControl(rover);
+            var rover = new RoverBuilder()
+                .AtPosition(startingPosition)
+                .Build();
+            var roverControl = new RoverControlBuilder()
+                .ForRover(rover)
+                .Build();
 
             roverControl.SendCommands(new List<char>() { 'f' });
             roverControl.InvokeCommands();
@@ -41,8 +53,12 @@ namespace MarsRoverTests
         [MemberData(nameof(RoverMovesBackwardsCases))]
         public void RoverMovesBackwards(Position startingPosition, Position positionAfterMovement)
         {
-            var rover = new Rover(startingPosition);
-            var roverControl = new RoverControl(rover);
+            var rover = new RoverBuilder()
+                .AtPosition(startingPosition)
+                .Build();
+            var roverControl = new RoverControlBuilder()
+                .ForRover(rover)
+                .Build();
 
             roverControl.SendCommands(new List<char>() { 'b' });
             roverControl.InvokeCommands();

@@ -8,7 +8,7 @@ namespace MarsRover.Positioning
         public Direction Direction { get; set; }
 
         private Grid Grid { get; }
-
+        
         public Position(int x, int y, DirectionEnum direction, Grid grid)
         {
             Grid = grid;
