@@ -9,7 +9,7 @@ namespace MarsRoverTests
         [Fact]
         public void CreateRoverWithDefaultPosition()
         {
-            var rover = new Rover();
+            var rover = new Rover(new Grid(1, 1));
             var defaultPosition = new Position(0, 0, DirectionEnum.North);
 
             Assert.Equal(defaultPosition, rover.Position);
@@ -19,7 +19,7 @@ namespace MarsRoverTests
         public void CreateRoverAtPosition()
         {
             var position = new Position(1, 1, DirectionEnum.North);
-            var rover = new Rover(position);
+            var rover = new Rover(new Grid(1, 1), position);
 
             Assert.Equal(position, rover.Position);
         }

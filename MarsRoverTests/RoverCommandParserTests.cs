@@ -9,7 +9,7 @@ namespace MarsRoverTests
         [Fact]
         public void ParseForwardCommand()
         {
-            var rover = new Rover();
+            var rover = new Rover(new Grid(1, 1));
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('f');
 
@@ -19,7 +19,7 @@ namespace MarsRoverTests
         [Fact]
         public void ParseBackwardsCommand()
         {
-            var rover = new Rover();
+            var rover = new Rover(new Grid(1, 1));
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('B');
 
@@ -29,7 +29,7 @@ namespace MarsRoverTests
         [Fact]
         public void ParseTurnRightCommand()
         {
-            var rover = new Rover();
+            var rover = new Rover(new Grid(1, 1));
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('r');
 
@@ -39,7 +39,7 @@ namespace MarsRoverTests
         [Fact]
         public void ParseTurnLeftCommand()
         {
-            var rover = new Rover();
+            var rover = new Rover(new Grid(1, 1));
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('l');
 

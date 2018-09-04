@@ -12,7 +12,7 @@ namespace MarsRoverTests
         [Fact]
         public void RoverReceievesCommands()
         {
-            var rover = new Rover();
+            var rover = new Rover(new Grid(2, 2));
             var commands = new List<char>() { 'f', 'b' };
             var roverControl = new RoverControl(rover);
             roverControl.SendCommands(commands);
@@ -26,7 +26,7 @@ namespace MarsRoverTests
         [MemberData(nameof(RoverMovesForwardCases))]
         public void RoverMovesForward(Position startingPosition, Position positionAfterMovement)
         {
-            var rover = new Rover(startingPosition);
+            var rover = new Rover(new Grid(2, 2), startingPosition);
             var roverControl = new RoverControl(rover);
 
             roverControl.SendCommands(new List<char>() { 'f' });
@@ -40,7 +40,7 @@ namespace MarsRoverTests
         [MemberData(nameof(RoverMovesBackwardsCases))]
         public void RoverMovesBackwards(Position startingPosition, Position positionAfterMovement)
         {
-            var rover = new Rover(startingPosition);
+            var rover = new Rover(new Grid(2, 2), startingPosition);
             var roverControl = new RoverControl(rover);
 
             roverControl.SendCommands(new List<char>() { 'b' });

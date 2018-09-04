@@ -9,24 +9,26 @@ namespace MarsRover
         public static Position DefaultRoverPosition = new Position(0, 0, DirectionEnum.North);
 
         public Position Position { get; set; }
+        public Grid Grid { get; set; }
 
-        public Rover() : this(DefaultRoverPosition)
+        public Rover(Grid grid) : this(grid, DefaultRoverPosition)
         {
         }
 
-        public Rover(Position position)
+        public Rover(Grid grid, Position position)
         {
+            Grid = grid;
             Position = position;
         }
 
         public void MoveForward()
         {
-            Position.Coordinates = Position.CoordinatesInFront();
+            Position.Coordinates = Position.CoordinatesInFront(Grid);
         }
 
         public void MoveBackwards()
         {
-            Position.Coordinates = Position.CoordinatesBehind();
+            Position.Coordinates = Position.CoordinatesBehind(Grid);
         }
 
         public void TurnRight()

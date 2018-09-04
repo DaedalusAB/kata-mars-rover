@@ -24,35 +24,5 @@ namespace MarsRoverTests
 
             Assert.NotEqual(position2, position1);
         }
-
-        [Theory]
-        [MemberData(nameof(CoordinatesInFrontCases))]
-        public void GetCoordinatesInFront(Position position, Coordinates coordinatesInFront)
-        {
-            Assert.True(position.CoordinatesInFront().Equals(coordinatesInFront));  // assert.equals (and bellow)
-        }
-
-        [Theory]
-        [MemberData(nameof(CoordinatesBehindCases))]
-        public void GetCoordinatesBehind(Position position, Coordinates coordinatesBehind)
-        {
-            Assert.True(position.CoordinatesBehind().Equals(coordinatesBehind));
-        }
-
-        public static IEnumerable<object[]> CoordinatesInFrontCases()
-        {
-            yield return new object[] { new Position(0, 0, DirectionEnum.East), new Coordinates(1, 0) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.North), new Coordinates(0, 1) };
-            yield return new object[] { new Position(1, 0, DirectionEnum.West), new Coordinates(0, 0) };
-            yield return new object[] { new Position(0, 1, DirectionEnum.South), new Coordinates(0, 0) };
-        }
-
-        public static IEnumerable<object[]> CoordinatesBehindCases()
-        {
-            yield return new object[] { new Position(1, 0, DirectionEnum.East), new Coordinates(0, 0) };
-            yield return new object[] { new Position(0, 1, DirectionEnum.North), new Coordinates(0, 0) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.West), new Coordinates(1, 0) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.South), new Coordinates(0, 1) };
-        }
     }
 }
