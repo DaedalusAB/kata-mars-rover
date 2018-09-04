@@ -44,9 +44,9 @@ namespace MarsRoverTests
             rover.SendCommands(initialCommands);
             rover.SendCommands(additionalCommands);
 
-            initialCommands.AddRange(additionalCommands);
+            var allCommands = initialCommands.Concat(additionalCommands);
 
-            Assert.True(rover.Commands.SequenceEqual(initialCommands));
+            Assert.True(rover.Commands.SequenceEqual(allCommands));
         }
 
         [Theory]
