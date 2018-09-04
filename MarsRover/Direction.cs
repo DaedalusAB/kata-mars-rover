@@ -13,18 +13,40 @@ namespace MarsRover
 
         public void TurnRight()
         {
-            Value = (DirectionEnum)(((int)Value + 1) % 4);
+            switch (Value)
+            {
+                case (DirectionEnum.North):
+                    Value = DirectionEnum.East;
+                    break;
+                case (DirectionEnum.East):
+                    Value = DirectionEnum.South;
+                    break;
+                case (DirectionEnum.South):
+                    Value = DirectionEnum.West;
+                    break;
+                case (DirectionEnum.West):
+                    Value = DirectionEnum.North;
+                    break;
+            }
         }
 
         public void TurnLeft()
         {
-            if (Value == DirectionEnum.North)
+            switch (Value)
             {
-                Value = DirectionEnum.West;
-                return;
+                case (DirectionEnum.North):
+                    Value = DirectionEnum.West;
+                    break;
+                case (DirectionEnum.West):
+                    Value = DirectionEnum.South;
+                    break;
+                case (DirectionEnum.South):
+                    Value = DirectionEnum.East;
+                    break;
+                case (DirectionEnum.East):
+                    Value = DirectionEnum.North;
+                    break;
             }
-
-            Value = (DirectionEnum)(((int)Value - 1) % 4);
         }
 
         public override bool Equals(object obj)
