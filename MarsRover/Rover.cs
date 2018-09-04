@@ -33,5 +33,15 @@ namespace MarsRover
         {
             Position.Coordinates = Position.CoordinatesBehind();
         }
+
+        public void TurnRight()
+        {
+            Position.Direction.TurnRight();
+        }
+
+        public void TurnLeft()
+        {
+            Position.Direction.TurnLeft();
+        }
     }
 }
