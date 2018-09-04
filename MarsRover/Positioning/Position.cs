@@ -7,26 +7,29 @@ namespace MarsRover.Positioning
         public Coordinates Coordinates { get; set; }
         public Direction Direction { get; set; }
 
-        public Position(int x, int y, DirectionEnum direction)
+        private Grid Grid { get; }
+        
+        public Position(int x, int y, DirectionEnum direction, Grid grid)
         {
+            Grid = grid;
             Coordinates = new Coordinates(x, y);
             Direction = new Direction(direction);
         }
 
-        public Coordinates CoordinatesInFront(Grid grid)
+        public Coordinates CoordinatesInFront()
         {
             switch (Direction.Value)
             {
                 case (DirectionEnum.North):
-                    return grid.Height > Coordinates.Y + 1
+                    return Grid.Height > Coordinates.Y + 1
                             ? new Coordinates(Coordinates.X, Coordinates.Y + 1)
                             : new Coordinates(Coordinates.X, 0);
                 case (DirectionEnum.South):
                     return Coordinates.Y - 1 >= 0
                             ? new Coordinates(Coordinates.X, Coordinates.Y - 1)
-                            : new Coordinates(Coordinates.X, grid.Height - 1);
+                            : new Coordinates(Coordinates.X, Grid.Height - 1);
                 case (DirectionEnum.East):
-                    return grid.Width > Coordinates.X + 1
+                    return Grid.Width > Coordinates.X + 1
                             ? new Coordinates(Coordinates.X + 1, Coordinates.Y)
                             : new Coordinates(0, Coordinates.Y);
                 case (DirectionEnum.West):
@@ -38,7 +41,7 @@ namespace MarsRover.Positioning
             }
         }
 
-        public Coordinates CoordinatesBehind(Grid grid)
+        public Coordinates CoordinatesBehind()
         {
             switch (Direction.Value)
             {

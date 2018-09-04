@@ -12,7 +12,8 @@ namespace MarsRoverTests
         [Fact]
         public void RoverReceievesCommands()
         {
-            var rover = new Rover(new Grid(2, 2));
+            var startingPosition = new Position(0, 0, DirectionEnum.East, new Grid(1, 1));
+            var rover = new Rover(startingPosition);
             var commands = new List<char>() { 'f', 'b' };
             var roverControl = new RoverControl(rover);
             roverControl.SendCommands(commands);
@@ -26,7 +27,7 @@ namespace MarsRoverTests
         [MemberData(nameof(RoverMovesForwardCases))]
         public void RoverMovesForward(Position startingPosition, Position positionAfterMovement)
         {
-            var rover = new Rover(new Grid(2, 2), startingPosition);
+            var rover = new Rover(startingPosition);
             var roverControl = new RoverControl(rover);
 
             roverControl.SendCommands(new List<char>() { 'f' });
@@ -40,7 +41,7 @@ namespace MarsRoverTests
         [MemberData(nameof(RoverMovesBackwardsCases))]
         public void RoverMovesBackwards(Position startingPosition, Position positionAfterMovement)
         {
-            var rover = new Rover(new Grid(2, 2), startingPosition);
+            var rover = new Rover(startingPosition);
             var roverControl = new RoverControl(rover);
 
             roverControl.SendCommands(new List<char>() { 'b' });
@@ -51,18 +52,18 @@ namespace MarsRoverTests
 
         public static IEnumerable<object[]> RoverMovesForwardCases()
         {
-            yield return new object[] { new Position(0, 0, DirectionEnum.North), new Position(0, 1, DirectionEnum.North) };
-            yield return new object[] { new Position(0, 1, DirectionEnum.South), new Position(0, 0, DirectionEnum.South) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.East), new Position(1, 0, DirectionEnum.East) };
-            yield return new object[] { new Position(1, 0, DirectionEnum.West), new Position(0, 0, DirectionEnum.West) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.North, new Grid(2, 2)), new Position(0, 1, DirectionEnum.North, new Grid(2, 2)) };
+            yield return new object[] { new Position(0, 1, DirectionEnum.South, new Grid(2, 2)), new Position(0, 0, DirectionEnum.South, new Grid(2, 2)) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.East, new Grid(2, 2)), new Position(1, 0, DirectionEnum.East, new Grid(2, 2)) };
+            yield return new object[] { new Position(1, 0, DirectionEnum.West, new Grid(2, 2)), new Position(0, 0, DirectionEnum.West, new Grid(2, 2)) };
         }
 
         public static IEnumerable<object[]> RoverMovesBackwardsCases()
         {
-            yield return new object[] { new Position(0, 1, DirectionEnum.North), new Position(0, 0, DirectionEnum.North) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.South), new Position(0, 1, DirectionEnum.South) };
-            yield return new object[] { new Position(1, 0, DirectionEnum.East), new Position(0, 0, DirectionEnum.East) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.West), new Position(1, 0, DirectionEnum.West) };
+            yield return new object[] { new Position(0, 1, DirectionEnum.North, new Grid(2, 2)), new Position(0, 0, DirectionEnum.North, new Grid(2, 2)) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.South, new Grid(2, 2)), new Position(0, 1, DirectionEnum.South, new Grid(2, 2)) };
+            yield return new object[] { new Position(1, 0, DirectionEnum.East, new Grid(2, 2)), new Position(0, 0, DirectionEnum.East, new Grid(2, 2)) };
+            yield return new object[] { new Position(0, 0, DirectionEnum.West, new Grid(2, 2)), new Position(1, 0, DirectionEnum.West, new Grid(2, 2)) };
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MarsRover;
 using MarsRover.Commands;
+using MarsRover.Positioning;
 using Xunit;
 
 namespace MarsRoverTests
@@ -9,7 +10,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseForwardCommand()
         {
-            var rover = new Rover(new Grid(1, 1));
+            var startingPosition = new Position(0, 0, DirectionEnum.East, new Grid(2, 2));
+            var rover = new Rover(startingPosition);
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('f');
 
@@ -19,7 +21,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseBackwardsCommand()
         {
-            var rover = new Rover(new Grid(1, 1));
+            var startingPosition = new Position(0, 0, DirectionEnum.East, new Grid(2, 2));
+            var rover = new Rover(startingPosition);
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('B');
 
@@ -29,7 +32,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseTurnRightCommand()
         {
-            var rover = new Rover(new Grid(1, 1));
+            var startingPosition = new Position(0, 0, DirectionEnum.East, new Grid(2, 2));
+            var rover = new Rover(startingPosition);
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('r');
 
@@ -39,7 +43,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseTurnLeftCommand()
         {
-            var rover = new Rover(new Grid(1, 1));
+            var startingPosition = new Position(0, 0, DirectionEnum.East, new Grid(2, 2));
+            var rover = new Rover(startingPosition);
             var roverCommandParser = new RoverCommandParser(rover);
             var command = roverCommandParser.Parse('l');
 

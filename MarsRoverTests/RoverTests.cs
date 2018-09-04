@@ -7,19 +7,11 @@ namespace MarsRoverTests
     public class RoverTests
     {
         [Fact]
-        public void CreateRoverWithDefaultPosition()
-        {
-            var rover = new Rover(new Grid(1, 1));
-            var defaultPosition = new Position(0, 0, DirectionEnum.North);
-
-            Assert.Equal(defaultPosition, rover.Position);
-        }
-
-        [Fact]
         public void CreateRoverAtPosition()
         {
-            var position = new Position(1, 1, DirectionEnum.North);
-            var rover = new Rover(new Grid(1, 1), position);
+            var grid = new Grid(1, 1);
+            var position = new Position(1, 1, DirectionEnum.North, grid);
+            var rover = new Rover(position);
 
             Assert.Equal(position, rover.Position);
         }
