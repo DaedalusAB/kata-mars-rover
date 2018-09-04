@@ -8,7 +8,7 @@ namespace MarsRover.Positioning
         public Direction Direction { get; set; }
 
         private Grid Grid { get; }
-        
+
         public Position(int x, int y, DirectionEnum direction, Grid grid)
         {
             Grid = grid;
@@ -35,7 +35,7 @@ namespace MarsRover.Positioning
                 case (DirectionEnum.West):
                     return Coordinates.X - 1 >= 0
                             ? new Coordinates(Coordinates.X - 1, Coordinates.Y)
-                            : new Coordinates(0, Coordinates.Y);
+                            : new Coordinates(Grid.Width - 1, Coordinates.Y);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Direction.Value));
             }
@@ -46,13 +46,21 @@ namespace MarsRover.Positioning
             switch (Direction.Value)
             {
                 case (DirectionEnum.North):
-                    return new Coordinates(Coordinates.X, Coordinates.Y - 1);
+                    return Coordinates.Y - 1 >= 0
+                            ? new Coordinates(Coordinates.X, Coordinates.Y - 1)
+                            : new Coordinates(Coordinates.X, Grid.Height - 1);
                 case (DirectionEnum.South):
-                    return new Coordinates(Coordinates.X, Coordinates.Y + 1);
+                    return Grid.Height > Coordinates.Y + 1
+                            ? new Coordinates(Coordinates.X, Coordinates.Y + 1)
+                            : new Coordinates(Coordinates.X, 0);
                 case (DirectionEnum.East):
-                    return new Coordinates(Coordinates.X - 1, Coordinates.Y);
+                    return Coordinates.X - 1 >= 0
+                            ? new Coordinates(Coordinates.X - 1, Coordinates.Y)
+                            : new Coordinates(Grid.Width - 1, Coordinates.Y);
                 case (DirectionEnum.West):
-                    return new Coordinates(Coordinates.X + 1, Coordinates.Y);
+                    return Grid.Width > Coordinates.X + 1
+                            ? new Coordinates(Coordinates.X + 1, Coordinates.Y)
+                            : new Coordinates(0, Coordinates.Y);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Direction.Value));
             }
