@@ -13,9 +13,8 @@ namespace MarsRoverTests
             var position = new PositionBuilder()
                 .DefaultPosition()
                 .Build();
-            var rover = new RoverBuilder()
-                .AtPosition(position)
-                .Build();
+
+            var rover = new Rover(position);
 
             Assert.Equal(position, rover.Position);
         }

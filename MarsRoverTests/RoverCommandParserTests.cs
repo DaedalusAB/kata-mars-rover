@@ -11,11 +11,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseForwardCommand()
         {
-            var startingPosition = new PositionBuilder()
-                .DefaultPosition()
-                .Build();
             var rover = new RoverBuilder()
-                .AtPosition(startingPosition)
+                .AtDefaultPosition()
                 .Build();
             var roverCommandParser = new RoverCommandParserBuilder()
                 .ForRover(rover)
@@ -29,11 +26,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseBackwardsCommand()
         {
-            var startingPosition = new PositionBuilder()
-                .DefaultPosition()
-                .Build();
             var rover = new RoverBuilder()
-                .AtPosition(startingPosition)
+                .AtDefaultPosition()
                 .Build();
             var roverCommandParser = new RoverCommandParserBuilder()
                 .ForRover(rover)
@@ -48,11 +42,8 @@ namespace MarsRoverTests
         public void ParseTurnRightCommand()
         {
 
-            var startingPosition = new PositionBuilder()
-                .DefaultPosition()
-                .Build();
             var rover = new RoverBuilder()
-                .AtPosition(startingPosition)
+                .AtDefaultPosition()
                 .Build();
             var roverCommandParser = new RoverCommandParserBuilder()
                 .ForRover(rover)
@@ -66,11 +57,8 @@ namespace MarsRoverTests
         [Fact]
         public void ParseTurnLeftCommand()
         {
-            var startingPosition = new PositionBuilder()
-                .DefaultPosition()
-                .Build();
             var rover = new RoverBuilder()
-                .AtPosition(startingPosition)
+                .AtDefaultPosition()
                 .Build();
             var roverCommandParser = new RoverCommandParserBuilder()
                 .ForRover(rover)

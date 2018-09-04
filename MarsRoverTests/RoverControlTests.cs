@@ -13,11 +13,8 @@ namespace MarsRoverTests
         [Fact]
         public void RoverReceievesCommands()
         {
-            var startingPosition = new PositionBuilder()
-                .DefaultPosition()
-                .Build();
             var rover = new RoverBuilder()
-                .AtPosition(startingPosition)
+                .AtDefaultPosition()
                 .Build();
             var roverControl = new RoverControlBuilder()
                 .ForRover(rover)
@@ -27,8 +24,8 @@ namespace MarsRoverTests
             roverControl.SendCommands(commands);
             
             Assert.Equal(2, roverControl.Commands.Count);
-            Assert.True(roverControl.Commands.Any(command => command is RoverCommandForward));
-            Assert.True(roverControl.Commands.Any(command => command is RoverCommandBackwards));
+            Assert.Contains(roverControl.Commands, command => command is RoverCommandForward);
+            Assert.Contains(roverControl.Commands, command => command is RoverCommandBackwards);
         }
 
         [Theory]
