@@ -20,11 +20,13 @@ namespace MarsRoverTests
                 .ForRover(rover)
                 .Build();
 
-            roverControl.SendCommands("fb");
+            roverControl.SendCommands("fblr");
             
-            Assert.Equal(2, roverControl.Commands.Count);
+            Assert.Equal(4, roverControl.Commands.Count);
             Assert.Contains(roverControl.Commands, command => command is RoverCommandForward);
             Assert.Contains(roverControl.Commands, command => command is RoverCommandBackwards);
+            Assert.Contains(roverControl.Commands, command => command is RoverCommandTurnLeft);
+            Assert.Contains(roverControl.Commands, command => command is RoverCommandTurnRight);
         }
 
         [Theory]
