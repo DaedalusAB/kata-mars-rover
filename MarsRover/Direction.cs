@@ -15,10 +15,26 @@ namespace MarsRover
         {
             if (value < 0 || value > 3)
             {
-                throw new  ArgumentOutOfRangeException(nameof(value));
+                throw new ArgumentOutOfRangeException(nameof(value));
             }
 
             Value = value;
+        }
+
+        public void TurnRight()
+        {
+            Value = (Value + 1) % 4;
+        }
+
+        public void TurnLeft()
+        {
+            if (Value == Direction.NORTH)
+            {
+                Value = Direction.WEST;
+                return;
+            }
+
+            Value = (Value - 1) % 4;
         }
 
         public override bool Equals(object obj)
