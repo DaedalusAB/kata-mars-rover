@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MarsRover;
+using MarsRover.Positioning;
 using Xunit;
 
 namespace MarsRoverTests

@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using MarsRover.Positioning;
 
 namespace MarsRover
 {
     public class Rover
     {
-        public Position Position { get; set; }
-        public List<char> Commands { get; set; }
+        public static Position DefaultRoverPosition = new Position(0, 0, DirectionEnum.North);
 
-        public Rover()
+        public Position Position { get; set; }
+
+        public Rover() : this(DefaultRoverPosition)
         {
-            Position = new Position(0, 0, DirectionEnum.North);
-            Commands = new List<char>();
         }
 
         public Rover(Position position)
         {
             Position = position;
-        }
-
-        public void SendCommands(List<char> commands)
-        {
-            Commands.AddRange(commands);
         }
 
         public void MoveForward()

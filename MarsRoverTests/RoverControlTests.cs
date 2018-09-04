@@ -1,29 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MarsRover;
+using MarsRover.Commands;
 using MarsRover.Positioning;
 using Xunit;
 
 namespace MarsRoverTests
 {
-    public class RoverTests
+    public class RoverControlTests
     {
         [Fact]
-        public void CreateRoverWithDefaultPosition()
+        public void RoverReceievesCommands()
         {
             var rover = new Rover();
-            var defaultPosition = new Position(0, 0, DirectionEnum.North);
-
-            Assert.Equal(defaultPosition, rover.Position);
-        }
-
-        [Fact]
-        public void CreateRoverAtPosition()
-        {
-            var position = new Position(1, 1, DirectionEnum.North);
-            var rover = new Rover(position);
-
-            Assert.Equal(position, rover.Position);
+            var commands = new List<char>() { 'f', 'b' };
+            var roverControl = new RoverControl(rover);
+            roverControl.SendCommands(commands);
+            
+            Assert.Equal(2, roverControl.Commands.Count);
+            Assert.True(roverControl.Commands.Any(command => command is RoverCommandForward));
+            Assert.True(roverControl.Commands.Any(command => command is RoverCommandBackwards));
         }
 
         [Theory]
@@ -31,51 +27,26 @@ namespace MarsRoverTests
         public void RoverMovesForward(Position startingPosition, Position positionAfterMovement)
         {
             var rover = new Rover(startingPosition);
+            var roverControl = new RoverControl(rover);
 
-            rover.MoveForward();
+            roverControl.SendCommands(new List<char>() { 'f' });
+            roverControl.InvokeCommands();
 
             Assert.Equal(positionAfterMovement, rover.Position);
         }
+
 
         [Theory]
         [MemberData(nameof(RoverMovesBackwardsCases))]
         public void RoverMovesBackwards(Position startingPosition, Position positionAfterMovement)
         {
             var rover = new Rover(startingPosition);
+            var roverControl = new RoverControl(rover);
 
-            rover.MoveBackwards();
+            roverControl.SendCommands(new List<char>() { 'b' });
+            roverControl.InvokeCommands();
 
             Assert.Equal(positionAfterMovement, rover.Position);
-        }
-
-        [Theory]
-        [InlineData(DirectionEnum.North, DirectionEnum.East)]
-        [InlineData(DirectionEnum.East, DirectionEnum.South)]
-        [InlineData(DirectionEnum.South, DirectionEnum.West)]
-        [InlineData(DirectionEnum.West, DirectionEnum.North)]
-        public void RoverTurnsRight(DirectionEnum startingDirection, DirectionEnum directionAfterTurn)
-        {
-            var position = new Position(0, 0, startingDirection);
-            var rover = new Rover(position);
-
-            rover.TurnRight();
-
-            Assert.Equal(directionAfterTurn, rover.Position.Direction.Value);
-        }
-
-        [Theory]
-        [InlineData(DirectionEnum.North, DirectionEnum.West)]
-        [InlineData(DirectionEnum.West, DirectionEnum.South)]
-        [InlineData(DirectionEnum.South, DirectionEnum.East)]
-        [InlineData(DirectionEnum.East, DirectionEnum.North)]
-        public void RoverTurnsLeft(DirectionEnum startingDirection, DirectionEnum directionAfterTurn)
-        {
-            var position = new Position(0, 0, startingDirection);
-            var rover = new Rover(position);
-
-            rover.TurnLeft();
-
-            Assert.Equal(directionAfterTurn, rover.Position.Direction.Value);
         }
 
         public static IEnumerable<object[]> RoverMovesForwardCases()

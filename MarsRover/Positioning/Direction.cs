@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MarsRover
+﻿namespace MarsRover.Positioning
 {
     public class Direction
     {

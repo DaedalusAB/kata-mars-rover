@@ -1,4 +1,4 @@
-﻿namespace MarsRover
+﻿namespace MarsRover.Positioning
 {
     public enum DirectionEnum
     {
