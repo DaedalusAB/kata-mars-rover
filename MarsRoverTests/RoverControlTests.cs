@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using MarsRover;
+using Xunit;
+
 using MarsRover.Commands;
 using MarsRover.Positioning;
 using MarsRoverTests.Builders;
-using Xunit;
 
 namespace MarsRoverTests
 {
@@ -46,7 +45,6 @@ namespace MarsRoverTests
 
             Assert.Equal(positionAfterMovement, rover.Position);
         }
-
 
         [Theory]
         [MemberData(nameof(RoverMovesBackwardsCases))]

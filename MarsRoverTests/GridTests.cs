@@ -1,5 +1,6 @@
-﻿using MarsRover.Positioning;
-using Xunit;
+﻿using Xunit;
+
+using MarsRover.Positioning;
 
 namespace MarsRoverTests
 {
