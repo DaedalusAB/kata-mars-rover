@@ -1,12 +1,12 @@
-﻿namespace MarsRover
+﻿namespace MarsRover.Commands
 {
     public abstract class RoverCommand
     {
-        protected Rover _rover;
+        protected Rover Rover { get; }
 
         protected RoverCommand(Rover rover)
         {
-            _rover = rover;
+            Rover = rover;
         }
 
         public abstract bool Execute();

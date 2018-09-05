@@ -8,7 +8,7 @@
 
         public override bool Execute()
         {            
-           return _rover.MoveBackwards();
+           return Rover.MoveBackwards();
         }
     }
 }

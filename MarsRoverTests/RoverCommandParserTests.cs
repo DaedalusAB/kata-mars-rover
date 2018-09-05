@@ -1,5 +1,6 @@
 ﻿using Xunit;
 
+using MarsRover;
 using MarsRover.Commands;
 using MarsRoverTests.Builders;
 
@@ -40,7 +41,6 @@ namespace MarsRoverTests
         [Fact]
         public void ParseTurnRightCommand()
         {
-
             var rover = new RoverBuilder()
                 .AtDefaultPosition()
                 .Build();

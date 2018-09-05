@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MarsRover.Positioning
 {
@@ -18,14 +16,12 @@ namespace MarsRover.Positioning
             Obstacles = new List<Coordinates>();
         }
 
-        public void AddObstacle(Coordinates coordinates)
-        {
+        public void AddObstacle(Coordinates coordinates) =>
             Obstacles.Add(coordinates);
-        }
 
-        public bool HasObstacle(Coordinates coordinates)
-        {
-            return Obstacles.Any(o => o.Equals(coordinates));
-        }
+
+        public bool HasObstacle(Coordinates coordinates) =>
+            Obstacles.Any(o => o.Equals(coordinates));
+
     }
 }

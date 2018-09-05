@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MarsRover.Positioning;
+﻿using MarsRover.Positioning;
 
 namespace MarsRover
 {

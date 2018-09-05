@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using MarsRover.Commands;
 
-namespace MarsRover.Commands
+namespace MarsRover
 {
     public class RoverCommandParser
     {
