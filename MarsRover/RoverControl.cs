@@ -33,6 +33,7 @@ namespace MarsRover
                 }
             }
 
+            Commands.Clear();
             return false;
         }
     }
