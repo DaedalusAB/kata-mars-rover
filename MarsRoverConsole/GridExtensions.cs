@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using MarsRover.Positioning;
 
 namespace MarsRoverConsole
 {
     public static class GridExtensions
     {
-        public static char[][] ToDisplayFormat(this Grid grid)
+        public static char[][] ToDisplayFormat(this Grid grid, List<Coordinates> discoveredObstacles)
         {
             var display = new char[grid.Height][];
 
@@ -15,7 +16,8 @@ namespace MarsRoverConsole
 
                 for (var j = 0; j < grid.Width; j++)
                 {
-                    if (grid.HasObstacle(new Coordinates(j, i)))
+                    var coordinates = new Coordinates(j, i);
+                    if (grid.HasObstacle(coordinates) && discoveredObstacles.Contains(coordinates))
                         display[i][j] = '#';
                     else
                         display[i][j] = ' ';

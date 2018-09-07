@@ -17,7 +17,7 @@ namespace MarsRover
         public bool CanMoveBackwards() =>
             !Position.HasObstacleBehind();
 
-        public bool MoveForward()
+        public virtual bool MoveForward()
         {
             if (CanMoveForward())
             {
@@ -27,7 +27,7 @@ namespace MarsRover
             return CanMoveForward();
         }
 
-        public bool MoveBackwards()
+        public virtual bool MoveBackwards()
         {
             if (CanMoveBackwards())
             {
