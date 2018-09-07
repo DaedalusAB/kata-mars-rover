@@ -15,8 +15,6 @@ namespace MarsRoverConsole
 
             for (var i = gridDisplay.Length - 1; i >= 0; i--)
             {
-                var line = gridDisplay[i];
-
                 sb.Append(gridDisplay[i]);
                 sb.Append(Environment.NewLine);
             }

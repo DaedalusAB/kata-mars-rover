@@ -18,7 +18,7 @@ namespace MarsRoverConsole
                     if (grid.HasObstacle(new Coordinates(j, i)))
                         display[i][j] = '#';
                     else
-                        display[i][j] = '_';
+                        display[i][j] = ' ';
                 }
             }
 
