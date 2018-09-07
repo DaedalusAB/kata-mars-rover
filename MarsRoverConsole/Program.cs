@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MarsRover;
 using MarsRover.Positioning;
 
@@ -6,6 +7,14 @@ namespace MarsRoverConsole
 {
     class Program
     {
+        private static Dictionary<ConsoleKey, string> commandDecoder = new Dictionary<ConsoleKey, string>()
+        {
+            { ConsoleKey.UpArrow, "f"},
+            { ConsoleKey.DownArrow, "b"},
+            { ConsoleKey.LeftArrow, "l"},
+            { ConsoleKey.RightArrow, "r"}
+        };
+
         static void Main(string[] args)
         {
             var grid = new Grid(height: 20, width: 20);
@@ -29,23 +38,17 @@ namespace MarsRoverConsole
 
         private static void InvokeCommand(ConsoleKey command, RoverControl roverControl)
         {
-            switch (command)
+            if (command == ConsoleKey.Escape)
             {
-                case (ConsoleKey.UpArrow):
-                    roverControl.SendCommands("f");
-                    break;
-                case(ConsoleKey.DownArrow):
-                    roverControl.SendCommands("b");
-                    break;
-                case (ConsoleKey.LeftArrow):
-                    roverControl.SendCommands("l");
-                    break;
-                case (ConsoleKey.RightArrow):
-                    roverControl.SendCommands("r");
-                    break;
-                default:
-                    return;
+                Environment.Exit(0);
             }
+
+            if (!commandDecoder.ContainsKey(command))
+            {
+                return;
+            }
+
+            roverControl.SendCommands(commandDecoder[command]);
             roverControl.InvokeCommands();
         }
     }
