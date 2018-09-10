@@ -6,11 +6,11 @@ namespace MarsRover
     public class RoverControl
     {
         public List<RoverCommand> Commands { get; set; }
-        private readonly RoverCommandParser _commandParser;
+        private readonly RoverCommandFactory _commandParser;
 
         public RoverControl(Rover rover)
         {
-            _commandParser = new RoverCommandParser(rover);
+            _commandParser = new RoverCommandFactory(rover);
             Commands = new List<RoverCommand>();
         }
 
