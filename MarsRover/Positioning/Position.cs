@@ -93,23 +93,15 @@ namespace MarsRover.Positioning
         }
 
         private Coordinates CoordinatesNorth() =>
-            Grid.Height > Coordinates.Y + 1
-                ? new Coordinates(Coordinates.X, Coordinates.Y + 1)
-                : new Coordinates(Coordinates.X, 0);
+            new Coordinates(Coordinates.X, (Coordinates.Y + 1 + Grid.Height) % Grid.Height);
 
         private Coordinates CoordinatesSouth() =>
-            Coordinates.Y - 1 >= 0
-                ? new Coordinates(Coordinates.X, Coordinates.Y - 1)
-                : new Coordinates(Coordinates.X, Grid.Height - 1);
+            new Coordinates(Coordinates.X, (Coordinates.Y - 1 + Grid.Height) % Grid.Height);
 
         private Coordinates CoordinatesEast() =>
-            Grid.Width > Coordinates.X + 1
-                ? new Coordinates(Coordinates.X + 1, Coordinates.Y)
-                : new Coordinates(0, Coordinates.Y);
+            new Coordinates((Coordinates.X + 1 + Grid.Width) % Grid.Width, Coordinates.Y);
 
         private Coordinates CoordinatesWest() =>
-            Coordinates.X - 1 >= 0
-                ? new Coordinates(Coordinates.X - 1, Coordinates.Y)
-                : new Coordinates(Grid.Width - 1, Coordinates.Y);
+                new Coordinates((Coordinates.X - 1 + Grid.Width) % Grid.Width, Coordinates.Y);
     }
 }
