@@ -43,7 +43,6 @@ namespace MarsRover
             return true;
         }
 
-
         public bool TurnLeft()
         {
             Position = Position.TurnLeft();
