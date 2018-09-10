@@ -11,41 +11,37 @@ namespace MarsRover.Positioning
             Value = value;
         }
 
-        public void TurnRight()
+        public Direction TurnRight()
         {
             switch (Value)
             {
                 case (DirectionEnum.North):
-                    Value = DirectionEnum.East;
-                    break;
+                    return new Direction(DirectionEnum.East);
                 case (DirectionEnum.East):
-                    Value = DirectionEnum.South;
-                    break;
+                    return new Direction(DirectionEnum.South);
                 case (DirectionEnum.South):
-                    Value = DirectionEnum.West;
-                    break;
+                    return new Direction(DirectionEnum.West);
                 case (DirectionEnum.West):
-                    Value = DirectionEnum.North;
-                    break;
+                    return new Direction(DirectionEnum.North);
+                default:
+                    throw new ArgumentException(nameof(Value));
             }
         }
 
-        public void TurnLeft()
+        public Direction TurnLeft()
         {
             switch (Value)
             {
                 case (DirectionEnum.North):
-                    Value = DirectionEnum.West;
-                    break;
+                    return new Direction(DirectionEnum.West);
                 case (DirectionEnum.West):
-                    Value = DirectionEnum.South;
-                    break;
+                    return new Direction(DirectionEnum.South);
                 case (DirectionEnum.South):
-                    Value = DirectionEnum.East;
-                    break;
+                    return new Direction(DirectionEnum.East);
                 case (DirectionEnum.East):
-                    Value = DirectionEnum.North;
-                    break;
+                    return new Direction(DirectionEnum.North);
+                default:
+                    throw new ArgumentException(nameof(Value));
             }
         }
 

@@ -5,7 +5,7 @@ namespace MarsRover.Positioning
     public class Position : IEquatable<Position>
     {
         private Coordinates Coordinates { get; }
-        public Direction Direction { get; }
+        private Direction Direction { get; }
         private Grid Grid { get; }
 
         public Position(Coordinates coordinates, Direction direction, Grid grid)
@@ -29,6 +29,16 @@ namespace MarsRover.Positioning
         public Position PositionBehind()
         {
             return new Position(CoordinatesBehind(), Direction, Grid);
+        }
+
+        public Position TurnRight()
+        {
+            return new Position(Coordinates, Direction.TurnRight(), Grid);
+        }
+
+        public Position TurnLeft()
+        {
+            return new Position(Coordinates, Direction.TurnLeft(), Grid);
         }
 
         public Coordinates CoordinatesInFront()

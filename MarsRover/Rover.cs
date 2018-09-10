@@ -39,14 +39,14 @@ namespace MarsRover
 
         public bool TurnRight()
         {
-            Position.Direction.TurnRight();
+            Position = Position.TurnRight();
             return true;
         }
 
 
         public bool TurnLeft()
         {
-            Position.Direction.TurnLeft();
+            Position = Position.TurnLeft();
             return true;
         }
     }
