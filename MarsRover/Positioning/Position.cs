@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace MarsRover.Positioning
 {
@@ -89,6 +90,33 @@ namespace MarsRover.Positioning
                 hashCode = (hashCode * 397) ^ (Direction != null ? Direction.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Grid != null ? Grid.GetHashCode() : 0);
                 return hashCode;
+            }
+        }
+
+        public string ToDisplayFormat()
+        {
+            var gridDisplay = Grid.ToDisplayFormat();
+            gridDisplay[Coordinates.Y][Coordinates.X] = DisplayRover();
+
+            var sb = new StringBuilder();
+
+            for (var i = gridDisplay.Length - 1; i >= 0; i--)
+            {
+                sb.Append(gridDisplay[i]);
+                sb.Append(Environment.NewLine);
+            }
+
+            return sb.ToString();
+        }
+        private char DisplayRover()
+        {
+            switch (Direction.Value)
+            {
+                case (DirectionEnum.North): return '↑';
+                case (DirectionEnum.South): return '↓';
+                case (DirectionEnum.East): return '→';
+                case (DirectionEnum.West): return '←';
+                default: return '?';
             }
         }
 

@@ -48,5 +48,10 @@ namespace MarsRover
             Position = Position.TurnLeft();
             return true;
         }
+
+        public string ToDisplayFormat()
+        {
+            return Position.ToDisplayFormat();
+        }
     }
 }

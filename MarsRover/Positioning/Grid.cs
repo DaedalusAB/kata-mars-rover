@@ -49,5 +49,42 @@ namespace MarsRover.Positioning
                 return hashCode;
             }
         }
+
+        public char[][] ToDisplayFormat()
+        {
+            var display = new char[Height][];
+
+            for (var i = 0; i < Height; i++)
+            {
+                display[i] = new char[Width];
+
+                for (var j = 0; j < Width; j++)
+                {
+                    if (HasObstacle(new Coordinates(j, i)))
+                        display[i][j] = '#';
+                    else
+                        display[i][j] = ' ';
+                }
+            }
+
+            return display;
+        }
+
+        public void AddRandomObstacles(int obstacleCount, Coordinates startingCoordinates)
+        {
+            var random = new Random(DateTime.UtcNow.Millisecond);
+            while (obstacleCount > 0)
+            {
+                var x = random.Next(0, Width);
+                var y = random.Next(0, Height);
+                if (x == startingCoordinates.X && y == startingCoordinates.Y)
+                {
+                    continue;
+                }
+
+                obstacleCount--;
+                AddObstacle(new Coordinates(x, y));
+            }
+        }
     }
 }

@@ -9,10 +9,11 @@ namespace MarsRoverConsole
         static void Main(string[] args)
         {
             var grid = new Grid(height: 20, width: 20);
-            grid.AddRandomObstacles(30);
+            var startingCoordinates = new Coordinates(0, 0);
+            var position = new Position(startingCoordinates,  new Direction(DirectionEnum.North), grid);
 
-            var position = new Position(0, 0, DirectionEnum.North, grid);
-            var rover = new ConsoleRover(position);
+            grid.AddRandomObstacles(30, startingCoordinates);
+            var rover = new Rover(position);
             var roverControl = new RoverControl(rover);
 
 
@@ -20,7 +21,7 @@ namespace MarsRoverConsole
 
             while (true)
             {
-                Console.Write(rover.DisplaySensorData());
+                Console.Write(rover.ToDisplayFormat());
                 var inputKey = Console.ReadKey().Key;
                 InvokeCommand(inputKey, roverControl);
                 Console.Clear();
