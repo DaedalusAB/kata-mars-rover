@@ -44,18 +44,50 @@ namespace MarsRoverTests
 
         public static IEnumerable<object[]> RoverWrapsGridMovingForwardCases()
         {
-            yield return new object[] { new Position(0, 4, DirectionEnum.North, new Grid(5, 5)), new Position(0, 0, DirectionEnum.North, new Grid(5, 5)) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.South, new Grid(5, 5)), new Position(0, 4, DirectionEnum.South, new Grid(5, 5)) };
-            yield return new object[] { new Position(4, 0, DirectionEnum.East, new Grid(5, 5)), new Position(0, 0, DirectionEnum.East, new Grid(5, 5)) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.West, new Grid(5, 5)), new Position(4, 0, DirectionEnum.West, new Grid(5, 5)) };
+            yield return new object[]
+            {
+                new Position(new Coordinates(0, 4),  new Direction(DirectionEnum.North), new Grid(5, 5)),
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.North), new Grid(5, 5))
+            };
+            yield return new object[]
+            {
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.South), new Grid(5, 5)),
+                new Position(new Coordinates(0, 4),  new Direction(DirectionEnum.South), new Grid(5, 5))
+            };
+            yield return new object[]
+            {
+                new Position(new Coordinates(4, 0),  new Direction(DirectionEnum.East), new Grid(5, 5)),
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.East), new Grid(5, 5))
+            };
+            yield return new object[]
+            {
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.West), new Grid(5, 5)),
+                new Position(new Coordinates(4, 0),  new Direction(DirectionEnum.West), new Grid(5, 5))
+            };
         }
 
         public static IEnumerable<object[]> RoverWrapsGridMovingBackwardsCases()
         {
-            yield return new object[] { new Position(0, 0, DirectionEnum.North, new Grid(5, 5)), new Position(0, 4, DirectionEnum.North, new Grid(5, 5)) };
-            yield return new object[] { new Position(0, 4, DirectionEnum.South, new Grid(5, 5)), new Position(0, 0, DirectionEnum.South, new Grid(5, 5)) };
-            yield return new object[] { new Position(0, 0, DirectionEnum.East, new Grid(5, 5)), new Position(4, 0, DirectionEnum.East, new Grid(5, 5)) };
-            yield return new object[] { new Position(4, 0, DirectionEnum.West, new Grid(5, 5)), new Position(0, 0, DirectionEnum.West, new Grid(5, 5)) };
+            yield return new object[]
+            {
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.North), new Grid(5, 5)),
+                new Position(new Coordinates(0, 4),  new Direction(DirectionEnum.North), new Grid(5, 5))
+            };
+            yield return new object[]
+            {
+                new Position(new Coordinates(0, 4),  new Direction(DirectionEnum.South), new Grid(5, 5)),
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.South), new Grid(5, 5))
+            };
+            yield return new object[]
+            {
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.East), new Grid(5, 5)),
+                new Position(new Coordinates(4, 0),  new Direction(DirectionEnum.East), new Grid(5, 5))
+            };
+            yield return new object[]
+            {
+                new Position(new Coordinates(4, 0),  new Direction(DirectionEnum.West), new Grid(5, 5)),
+                new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.West), new Grid(5, 5))
+            };
         }
     }
 }

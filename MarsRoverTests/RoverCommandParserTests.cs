@@ -14,7 +14,7 @@ namespace MarsRoverTests
             var rover = new RoverBuilder()
                 .AtDefaultPosition()
                 .Build();
-            var roverCommandParser = new RoverCommandParserBuilder()
+            var roverCommandParser = new RoverCommandFactoryBuilder()
                 .ForRover(rover)
                 .Build();
 
@@ -29,7 +29,7 @@ namespace MarsRoverTests
             var rover = new RoverBuilder()
                 .AtDefaultPosition()
                 .Build();
-            var roverCommandParser = new RoverCommandParserBuilder()
+            var roverCommandParser = new RoverCommandFactoryBuilder()
                 .ForRover(rover)
                 .Build();
 
@@ -44,7 +44,7 @@ namespace MarsRoverTests
             var rover = new RoverBuilder()
                 .AtDefaultPosition()
                 .Build();
-            var roverCommandParser = new RoverCommandParserBuilder()
+            var roverCommandParser = new RoverCommandFactoryBuilder()
                 .ForRover(rover)
                 .Build();
 
@@ -59,7 +59,7 @@ namespace MarsRoverTests
             var rover = new RoverBuilder()
                 .AtDefaultPosition()
                 .Build();
-            var roverCommandParser = new RoverCommandParserBuilder()
+            var roverCommandParser = new RoverCommandFactoryBuilder()
                 .ForRover(rover)
                 .Build();
 

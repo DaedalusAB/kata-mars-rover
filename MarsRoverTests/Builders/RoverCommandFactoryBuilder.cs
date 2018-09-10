@@ -2,11 +2,11 @@
 
 namespace MarsRoverTests.Builders
 {
-    public class RoverCommandParserBuilder
+    public class RoverCommandFactoryBuilder
     {
         private RoverCommandParser _parser;
 
-        public RoverCommandParserBuilder ForRover(Rover rover)
+        public RoverCommandFactoryBuilder ForRover(Rover rover)
         {
             _parser = new RoverCommandParser(rover);
             return this;

@@ -6,14 +6,13 @@ namespace MarsRover.Positioning
     {
         public Coordinates Coordinates { get; set; }
         public Direction Direction { get; set; }
+        private Grid Grid { get; }
 
-        public Grid Grid { get; }
-
-        public Position(int x, int y, DirectionEnum direction, Grid grid)
+        public Position(Coordinates coordinates, Direction direction, Grid grid)
         {
             Grid = grid;
-            Coordinates = new Coordinates(x, y);
-            Direction = new Direction(direction);
+            Coordinates = coordinates;
+            Direction = direction;
         }
 
         public bool HasObstacleInFront() =>

@@ -9,13 +9,13 @@ namespace MarsRoverTests.Builders
         
         public RoverBuilder AtDefaultPosition()
         {
-            _rover = new Rover(new Position(0, 0, DirectionEnum.North, new Grid(2 ,2)));
+            _rover = new Rover(new Position(new Coordinates(0, 0),  new Direction(DirectionEnum.North), new Grid(2 ,2)));
             return this;
         }
 
         public RoverBuilder AtPosition(Position position)
         {
-            _rover = new Rover(new Position(position.Coordinates.X, position.Coordinates.Y, position.Direction.Value, position.Grid));
+            _rover = new Rover(position);
             return this;
         }
 
