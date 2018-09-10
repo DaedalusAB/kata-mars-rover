@@ -4,8 +4,8 @@ namespace MarsRover.Positioning
 {
     public class Position : IEquatable<Position>
     {
-        public Coordinates Coordinates { get; set; }
-        public Direction Direction { get; set; }
+        private Coordinates Coordinates { get; }
+        public Direction Direction { get; }
         private Grid Grid { get; }
 
         public Position(Coordinates coordinates, Direction direction, Grid grid)
@@ -20,6 +20,16 @@ namespace MarsRover.Positioning
 
         public bool HasObstacleBehind() =>
             Grid.HasObstacle(CoordinatesBehind());
+
+        public Position PositionInFront()
+        {
+            return new Position(CoordinatesInFront(), Direction, Grid);
+        }
+
+        public Position PositionBehind()
+        {
+            return new Position(CoordinatesBehind(), Direction, Grid);
+        }
 
         public Coordinates CoordinatesInFront()
         {

@@ -21,7 +21,7 @@ namespace MarsRover
         {
             if (CanMoveForward())
             {
-                Position.Coordinates = Position.CoordinatesInFront();
+                Position = Position.PositionInFront();
             }
 
             return CanMoveForward();
@@ -31,7 +31,7 @@ namespace MarsRover
         {
             if (CanMoveBackwards())
             {
-                Position.Coordinates = Position.CoordinatesBehind();
+                Position = Position.PositionBehind();
             }
 
             return CanMoveBackwards();
