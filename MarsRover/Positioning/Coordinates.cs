@@ -2,7 +2,7 @@
 
 namespace MarsRover.Positioning
 {
-    public class Coordinates
+    public class Coordinates : IEquatable<Coordinates>
     {
         public int X { get; set; }
         public int Y { get; set; }
@@ -13,11 +13,19 @@ namespace MarsRover.Positioning
             Y = y;
         }
 
-        public override bool Equals(object obj) =>
-            obj is Coordinates coordinates && X == coordinates.X && Y == coordinates.Y;
+        public bool Equals(Coordinates other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return X == other.X && Y == other.Y;
+        }
 
-
-        public override int GetHashCode() =>
-            throw new NotImplementedException();
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X * 397) ^ Y;
+            }
+        }
     }
 }

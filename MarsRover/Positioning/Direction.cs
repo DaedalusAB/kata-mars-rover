@@ -2,7 +2,7 @@
 
 namespace MarsRover.Positioning
 {
-    public class Direction
+    public class Direction : IEquatable<Direction>
     {
         public DirectionEnum Value { get; set; }
 
@@ -49,10 +49,16 @@ namespace MarsRover.Positioning
             }
         }
 
-        public override bool Equals(object obj) =>
-            obj is Direction direction && Value == direction.Value;
+        public bool Equals(Direction other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Value == other.Value;
+        }
 
-        public override int GetHashCode() =>
-            throw new NotImplementedException();
+        public override int GetHashCode()
+        {
+            return (int) Value;
+        }
     }
 }

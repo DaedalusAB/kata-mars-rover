@@ -2,7 +2,7 @@
 
 namespace MarsRover.Positioning
 {
-    public class Position
+    public class Position : IEquatable<Position>
     {
         public Coordinates Coordinates { get; set; }
         public Direction Direction { get; set; }
@@ -54,12 +54,23 @@ namespace MarsRover.Positioning
                     throw new ArgumentOutOfRangeException(nameof(Direction.Value));
             }
         }
+        public bool Equals(Position other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Coordinates.Equals(other.Coordinates) && Direction.Equals(other.Direction) && Grid.Equals(other.Grid);
+        }
 
-        public override bool Equals(object obj) => 
-            obj is Position position && Coordinates.Equals(position.Coordinates) && Direction.Equals(position.Direction);
-        
-        public override int GetHashCode() =>
-            throw new NotImplementedException();
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (Coordinates != null ? Coordinates.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Direction != null ? Direction.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Grid != null ? Grid.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
 
         private Coordinates CoordinatesNorth() =>
             Grid.Height > Coordinates.Y + 1
