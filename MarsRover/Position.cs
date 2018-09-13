@@ -21,17 +21,26 @@ namespace MarsRover
         {
             yield return Coordinates;
             yield return Direction;
-            yield return Grid;
         }
 
         public Position InFront()
         {
-            return Translate(CoordinatesChangeByDirection().dx, CoordinatesChangeByDirection().dy);
+            var coordinatesChange = CoordinatesChangeByDirection();
+            var newPosition = Translate(coordinatesChange.dx, coordinatesChange.dy);
+
+            return Grid.HasObstacleAt(newPosition.Coordinates)
+                ? this
+                : newPosition;
         }
 
         public Position Behind()
         {
-            return Translate(CoordinatesChangeByDirection().Item1 * -1, CoordinatesChangeByDirection().Item2 * -1);
+            var coordinatesChange = CoordinatesChangeByDirection();
+            var newPosition = Translate(coordinatesChange.dx * -1, coordinatesChange.dy * -1);
+
+            return Grid.HasObstacleAt(newPosition.Coordinates)
+                ? this
+                : newPosition;
         }
 
         public Position TurnRight()

@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
-using MarsRover.Helpers;
+using System.Linq;
 
 namespace MarsRover
 {
-    public class Grid : ValueObject
+    public class Grid
     {
         public int Width { get; }
         public int Height { get; }
+        public ISet<Coordinates> Obstacles { get; }
 
-        public Grid(int width, int height)
+        public Grid(int width, int height, ISet<Coordinates> obstacles)
         {
             Width = width;
             Height = height;
+            Obstacles = obstacles;
         }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        public bool HasObstacleAt(Coordinates coordinatesToCheck)
         {
-            yield return Width;
-            yield return Height;
+            return Obstacles.Any(o => o.Equals(coordinatesToCheck));
         }
     }
 }

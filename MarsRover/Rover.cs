@@ -20,10 +20,10 @@ namespace MarsRover
 
         public Rover ExecuteCommands()
         {
-            Rover rover = null;
+            Rover rover = this;
             foreach (var command in Commands)
             {
-                rover = ExecuteSingleCommand(command);
+                rover = rover.ExecuteSingleCommand(command);
             }
 
             return rover;

@@ -1,4 +1,5 @@
-﻿using MarsRover;
+﻿using System.Collections.Generic;
+using MarsRover;
 
 namespace MarsRoverTests
 {
@@ -6,7 +7,7 @@ namespace MarsRoverTests
     {
         private Coordinates _coordinates = new Coordinates(0, 0);
         private Direction _direction = new Direction(DirectionEnum.North);
-        private Grid _grid = new Grid(2, 2);
+        private Grid _grid = new Grid(2, 2, new HashSet<Coordinates>());
 
         public PositionBuilder At(int x, int y)
         {

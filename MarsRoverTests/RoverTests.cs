@@ -182,5 +182,36 @@ namespace MarsRoverTests
 
             Assert.Equal(positionAfter, roverAfter.Position);
         }
+
+        [Fact]
+        public void RoverRunsIntoObstacle()
+        {
+            var grid = GridBuilder
+                .Width(2)
+                .Height(2)
+                .ObstacleAt(1, 1)
+                .Build();
+
+            var position = PositionBuilder
+                .At(0, 0)
+                .Facing(DirectionEnum.North)
+                .On(grid)
+                .Build();
+
+            var rover = RoverBuilder
+                .AtPosition(position)
+                .Build();
+
+            rover.ReceiveCommands("frf");
+            var roverAfter = rover.ExecuteCommands();
+
+            var positionAfterMove = PositionBuilder
+                .At(0, 1)
+                .Facing(DirectionEnum.East)
+                .On(grid)
+                .Build();
+
+            Assert.Equal(positionAfterMove, roverAfter.Position);
+        }
     }
 }
