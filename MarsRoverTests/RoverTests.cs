@@ -1,22 +1,28 @@
-﻿using Xunit;
-
+﻿using System.Collections.Generic;
 using MarsRover;
-using MarsRoverTests.Builders;
+using Xunit;
 
 namespace MarsRoverTests
 {
     public class RoverTests
     {
-        [Fact]
-        public void CreateRoverAtPosition()
+        private readonly RoverBuilder RoverBuilder = new RoverBuilder();
+
+        [Theory]
+        [MemberData(nameof(CreateRoverAtPositionCases))]
+        public void CreateRoverAtPosition(Position initialPosition)
         {
-            var position = new PositionBuilder()
-                .DefaultPosition()
+            var rover = RoverBuilder
+                .AtPosition(initialPosition)
                 .Build();
 
-            var rover = new Rover(position);
+            Assert.Equal(initialPosition, rover.Position);
+        }
 
-            Assert.Equal(position, rover.Position);
+        public static IEnumerable<object[]> CreateRoverAtPositionCases()
+        {
+            yield return new object[] {new Position(new Coordinates(0, 0), Direction.North)};
+            yield return new object[] { new Position(new Coordinates(1, 2), Direction.West) };
         }
     }
 }
