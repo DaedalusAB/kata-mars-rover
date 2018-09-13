@@ -5,14 +5,9 @@ namespace MarsRover
 {
     public class Direction : ValueObject
     {
-        public static Direction North = new Direction(DirectionEnum.North);
-        public static Direction East = new Direction(DirectionEnum.East);
-        public static Direction South = new Direction(DirectionEnum.South);
-        public static Direction West = new Direction(DirectionEnum.West);
-
         private DirectionEnum Value { get; }
 
-        private Direction(DirectionEnum value)
+        public Direction(DirectionEnum value)
         {
             Value = value;
         }

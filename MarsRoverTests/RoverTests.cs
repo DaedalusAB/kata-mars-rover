@@ -6,23 +6,24 @@ namespace MarsRoverTests
 {
     public class RoverTests
     {
-        private readonly RoverBuilder RoverBuilder = new RoverBuilder();
+        private PositionBuilder PositionBuilder { get; } = new PositionBuilder();
+
+        private RoverBuilder RoverBuilder { get; } = new RoverBuilder();
 
         [Theory]
-        [MemberData(nameof(CreateRoverAtPositionCases))]
-        public void CreateRoverAtPosition(Position initialPosition)
+        [InlineData(0, 0, DirectionEnum.North)]
+        public void CreateRoverAtPosition(int x, int y, DirectionEnum direction)
         {
+            var initialPosition = PositionBuilder
+                .At(x, y)
+                .Facing(direction)
+                .Build();
+
             var rover = RoverBuilder
                 .AtPosition(initialPosition)
                 .Build();
 
             Assert.Equal(initialPosition, rover.Position);
-        }
-
-        public static IEnumerable<object[]> CreateRoverAtPositionCases()
-        {
-            yield return new object[] {new Position(new Coordinates(0, 0), Direction.North)};
-            yield return new object[] { new Position(new Coordinates(1, 2), Direction.West) };
         }
     }
 }
