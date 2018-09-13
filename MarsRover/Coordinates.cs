@@ -7,13 +7,11 @@ namespace MarsRover
     {
         public int X { get; }
         public int Y { get; }
-        public Grid Grid { get; }
 
-        public Coordinates(int x, int y, Grid grid)
+        public Coordinates(int x, int y)
         {
             X = x;
             Y = y;
-            Grid = grid;
         }
 
         protected override IEnumerable<object> GetAtomicValues()
@@ -22,12 +20,12 @@ namespace MarsRover
             yield return Y;
         }
 
-        public Coordinates Translate(int dx, int dy)
+        public Coordinates Translate(int dx, int maxX, int dy, int maxY)
         {
-            var newX = (X + dx + Grid.Width) % Grid.Width;
-            var newY = (Y + dy + Grid.Height) % Grid.Height;
+            var newX = (X + dx + maxX) % maxX;
+            var newY = (Y + dy + maxY) % maxY;
 
-            return new Coordinates(newX, newY, Grid);
+            return new Coordinates(newX, newY);
         }
     }
 }

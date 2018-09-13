@@ -46,7 +46,7 @@ namespace MarsRover
 
         private Position Translate(int dx, int dy)
         {
-            return new Position(Coordinates.Translate(dx, dy), Direction, Grid);
+            return new Position(Coordinates.Translate(dx, Grid.Width, dy, Grid.Height), Direction, Grid);
         }
 
         private (int dx, int dy) CoordinatesChangeByDirection()
