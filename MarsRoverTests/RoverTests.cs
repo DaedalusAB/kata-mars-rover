@@ -97,5 +97,53 @@ namespace MarsRoverTests
 
             Assert.Equal(positionAfter, roverAfter.Position);
         }
+
+        [Theory]
+        [InlineData(DirectionEnum.North, DirectionEnum.East)]
+        [InlineData(DirectionEnum.East, DirectionEnum.South)]
+        [InlineData(DirectionEnum.South, DirectionEnum.West)]
+        [InlineData(DirectionEnum.West, DirectionEnum.North)]
+        public void RoverTurnsRight(DirectionEnum directionBefore, DirectionEnum directionAfter)
+        {
+            var positionBefore = PositionBuilder
+                .Facing(directionBefore)
+                .Build();
+            var rover = RoverBuilder
+                .AtPosition(positionBefore)
+                .Build();
+
+            rover.ReceiveCommands("r");
+            var roverAfter = rover.ExecuteCommands();
+
+            var positionAfter = PositionBuilder
+                .Facing(directionAfter)
+                .Build();
+
+            Assert.Equal(positionAfter, roverAfter.Position);
+        }
+
+        [Theory]
+        [InlineData(DirectionEnum.North, DirectionEnum.West)]
+        [InlineData(DirectionEnum.West, DirectionEnum.South)]
+        [InlineData(DirectionEnum.South, DirectionEnum.East)]
+        [InlineData(DirectionEnum.East, DirectionEnum.North)]
+        public void RoverTurnsLeft(DirectionEnum directionBefore, DirectionEnum directionAfter)
+        {
+            var positionBefore = PositionBuilder
+                .Facing(directionBefore)
+                .Build();
+            var rover = RoverBuilder
+                .AtPosition(positionBefore)
+                .Build();
+
+            rover.ReceiveCommands("L");
+            var roverAfter = rover.ExecuteCommands();
+
+            var positionAfter = PositionBuilder
+                .Facing(directionAfter)
+                .Build();
+
+            Assert.Equal(positionAfter, roverAfter.Position);
+        }
     }
 }

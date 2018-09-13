@@ -35,6 +35,10 @@ namespace MarsRover
                 return new Rover(Position.InFront());
             if(command == Command.BackwardCommand)
                 return new Rover(Position.Behind());
+            if(command == Command.TurnRight)
+                return new Rover(Position.TurnRight());
+            if(command == Command.TurnLeft)
+                return new Rover(Position.TurnLeft());
             
             throw new ArgumentOutOfRangeException(nameof(command));
         }

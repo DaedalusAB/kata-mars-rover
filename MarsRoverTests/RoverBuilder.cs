@@ -9,16 +9,14 @@ namespace MarsRoverTests
         public RoverBuilder ARover()
         {
             _position = new PositionBuilder()
-                .At(0, 0)
-                .Facing(DirectionEnum.North)
                 .Build();
 
             return this;
         }
 
-        public RoverBuilder AtPosition(Position initialPosition)
+        public RoverBuilder AtPosition(Position position)
         {
-            _position = initialPosition;
+            _position = position;
 
             return this;
         }

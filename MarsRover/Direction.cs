@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MarsRover.Helpers;
 
 namespace MarsRover
@@ -20,6 +21,34 @@ namespace MarsRover
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Value;
+        }
+
+        public Direction TurnRight()
+        {
+            if (Value == DirectionEnum.North)
+                return new Direction(DirectionEnum.East);
+            if (Value == DirectionEnum.East)
+                return new Direction(DirectionEnum.South);
+            if (Value == DirectionEnum.South)
+                return new Direction(DirectionEnum.West);
+            if (Value == DirectionEnum.West)
+                return new Direction(DirectionEnum.North);
+
+            throw new ArgumentOutOfRangeException(nameof(Value));
+        }
+
+        public Direction TurnLeft()
+        {
+            if (Value == DirectionEnum.North)
+                return new Direction(DirectionEnum.West);
+            if (Value == DirectionEnum.West)
+                return new Direction(DirectionEnum.South);
+            if (Value == DirectionEnum.South)
+                return new Direction(DirectionEnum.East);
+            if (Value == DirectionEnum.East)
+                return new Direction(DirectionEnum.North);
+
+            throw new ArgumentOutOfRangeException(nameof(Value));
         }
     }
 }

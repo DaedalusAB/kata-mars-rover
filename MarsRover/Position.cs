@@ -23,7 +23,7 @@ namespace MarsRover
 
         public Position InFront()
         {
-            return Translate(CoordinatesChangeByDirection().Item1, CoordinatesChangeByDirection().Item2);
+            return Translate(CoordinatesChangeByDirection().dx, CoordinatesChangeByDirection().dy);
         }
 
         public Position Behind()
@@ -31,12 +31,22 @@ namespace MarsRover
             return Translate(CoordinatesChangeByDirection().Item1 * -1, CoordinatesChangeByDirection().Item2 * -1);
         }
 
+        public Position TurnRight()
+        {
+           return new Position(Coordinates, Direction.TurnRight());
+        }
+
+        public Position TurnLeft()
+        {
+            return new Position(Coordinates, Direction.TurnLeft());
+        }
+
         private Position Translate(int dx, int dy)
         {
             return new Position(Coordinates.Translate(dx, dy), Direction);
         }
 
-        private (int, int) CoordinatesChangeByDirection()
+        private (int dx, int dy) CoordinatesChangeByDirection()
         {
             if (Direction == Direction.North)
                 return (0, 1);

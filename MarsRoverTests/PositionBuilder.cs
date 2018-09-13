@@ -4,8 +4,8 @@ namespace MarsRoverTests
 {
     public class PositionBuilder
     {
-        private Coordinates _coordinates;
-        private Direction _direction;
+        private Coordinates _coordinates = new Coordinates(0, 0);
+        private Direction _direction = new Direction(DirectionEnum.North);
 
         public PositionBuilder At(int x, int y)
         {
