@@ -21,16 +21,31 @@ namespace MarsRover
             yield return Direction;
         }
 
-        public Position Forward()
+        public Position InFront()
+        {
+            return Translate(CoordinatesChangeByDirection().Item1, CoordinatesChangeByDirection().Item2);
+        }
+
+        public Position Behind()
+        {
+            return Translate(CoordinatesChangeByDirection().Item1 * -1, CoordinatesChangeByDirection().Item2 * -1);
+        }
+
+        private Position Translate(int dx, int dy)
+        {
+            return new Position(Coordinates.Translate(dx, dy), Direction);
+        }
+
+        private (int, int) CoordinatesChangeByDirection()
         {
             if (Direction == Direction.North)
-                return  new Position(Coordinates.Translate(0, 1), Direction);
+                return (0, 1);
             if (Direction == Direction.East)
-                return new Position(Coordinates.Translate(1, 0), Direction);
+                return (1, 0);
             if (Direction == Direction.South)
-                return new Position(Coordinates.Translate(0, -1), Direction);
+                return (0, -1);
             if (Direction == Direction.West)
-                return new Position(Coordinates.Translate(-1, 0), Direction);
+                return (-1, 0);
 
             throw new ArgumentOutOfRangeException(nameof(Direction));
         }

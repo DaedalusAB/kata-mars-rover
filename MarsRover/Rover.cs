@@ -20,7 +20,7 @@ namespace MarsRover
 
         public Rover ExecuteCommands()
         {
-            Rover rover = this;
+            Rover rover = null;
             foreach (var command in Commands)
             {
                 rover = ExecuteSingleCommand(command);
@@ -32,10 +32,10 @@ namespace MarsRover
         private Rover ExecuteSingleCommand(Command command)
         {
             if (command == Command.ForwardCommand)
-            {
-                return new Rover(Position.Forward());
-            }
-
+                return new Rover(Position.InFront());
+            if(command == Command.BackwardCommand)
+                return new Rover(Position.Behind());
+            
             throw new ArgumentOutOfRangeException(nameof(command));
         }
     }
