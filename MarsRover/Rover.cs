@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MarsRover
 {
@@ -15,6 +16,27 @@ namespace MarsRover
         public void ReceiveCommands(IEnumerable<char> commands)
         {
             Commands = commands.GetCommands();
+        }
+
+        public Rover ExecuteCommands()
+        {
+            Rover rover = this;
+            foreach (var command in Commands)
+            {
+                rover = ExecuteSingleCommand(command);
+            }
+
+            return rover;
+        }
+
+        private Rover ExecuteSingleCommand(Command command)
+        {
+            if (command.Equals(new Command('f')))
+            {
+                return new Rover(Position.Forward());
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(command));
         }
     }
 }

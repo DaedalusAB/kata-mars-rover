@@ -41,5 +41,30 @@ namespace MarsRoverTests
 
             Assert.True(commands.GetCommands().SequenceEqual(rover.Commands));
         }
+
+        [Theory]
+        [InlineData(0, 0, DirectionEnum.North, 0, 1, DirectionEnum.North)]
+        public void RoverMovesForward(
+            int xBefore, int yBefore, DirectionEnum directionBefore,
+            int xAfter, int yAfter, DirectionEnum directionAfter)
+        {
+            var positionBefore = PositionBuilder
+                .At(xBefore, yBefore)
+                .Facing(directionBefore)
+                .Build();
+            var rover = RoverBuilder
+                .AtPosition(positionBefore)
+                .Build();
+
+            rover.ReceiveCommands("f");
+            var roverAfter = rover.ExecuteCommands();
+
+            var positionAfter = PositionBuilder
+                .At(xAfter, yAfter)
+                .Facing(directionAfter)
+                .Build();
+
+            Assert.Equal(positionAfter, roverAfter.Position);
+        }
     }
 }

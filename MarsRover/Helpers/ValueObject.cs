@@ -11,9 +11,9 @@ namespace MarsRover.Helpers
     {
         protected abstract IEnumerable<object> GetAtomicValues();
 
-        public static bool operator ==(ValueObject obj1, ValueObject obj2)
+        public static bool operator ==(ValueObject left, ValueObject right)
         {
-            return obj1 != null && obj1.Equals(obj2);
+            return !(left is null ^ right is null) && (left is null || left.Equals(right));
         }
 
         public static bool operator !=(ValueObject obj1, ValueObject obj2)
@@ -46,7 +46,12 @@ namespace MarsRover.Helpers
                 }
             }
 
-            return !thisValues.MoveNext() && !otherValues.MoveNext();
+            var result = !thisValues.MoveNext() && !otherValues.MoveNext();
+
+            thisValues.Dispose();
+            otherValues.Dispose();
+
+            return result;
         }
 
         public override int GetHashCode()

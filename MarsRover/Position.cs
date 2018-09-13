@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MarsRover.Helpers;
 
 namespace MarsRover
@@ -18,6 +19,16 @@ namespace MarsRover
         {
             yield return Coordinates;
             yield return Direction;
+        }
+
+        public Position Forward()
+        {
+            if (Direction == new Direction(DirectionEnum.North))
+            {
+                return  new Position(Coordinates.Translate(0, 1), Direction);
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(Direction));
         }
     }
 }

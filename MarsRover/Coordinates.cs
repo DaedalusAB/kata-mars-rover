@@ -19,5 +19,10 @@ namespace MarsRover
             yield return X;
             yield return Y;
         }
+
+        public Coordinates Translate(int dx, int dy)
+        {
+           return new Coordinates(X + dx, Y + dy);
+        }
     }
 }
