@@ -44,6 +44,9 @@ namespace MarsRoverTests
 
         [Theory]
         [InlineData(0, 0, DirectionEnum.North, 0, 1, DirectionEnum.North)]
+        [InlineData(0, 0, DirectionEnum.East, 1, 0, DirectionEnum.East)]
+        [InlineData(0, 1, DirectionEnum.South, 0, 0, DirectionEnum.South)]
+        [InlineData(1, 0, DirectionEnum.West, 0, 0, DirectionEnum.West)]
         public void RoverMovesForward(
             int xBefore, int yBefore, DirectionEnum directionBefore,
             int xAfter, int yAfter, DirectionEnum directionAfter)

@@ -23,10 +23,14 @@ namespace MarsRover
 
         public Position Forward()
         {
-            if (Direction == new Direction(DirectionEnum.North))
-            {
+            if (Direction == Direction.North)
                 return  new Position(Coordinates.Translate(0, 1), Direction);
-            }
+            if (Direction == Direction.East)
+                return new Position(Coordinates.Translate(1, 0), Direction);
+            if (Direction == Direction.South)
+                return new Position(Coordinates.Translate(0, -1), Direction);
+            if (Direction == Direction.West)
+                return new Position(Coordinates.Translate(-1, 0), Direction);
 
             throw new ArgumentOutOfRangeException(nameof(Direction));
         }

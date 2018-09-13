@@ -5,6 +5,8 @@ namespace MarsRover
 {
     public class Command : ValueObject
     {
+        public static Command ForwardCommand = new Command('f');
+
         public char Value { get; }
 
         public Command(char value)

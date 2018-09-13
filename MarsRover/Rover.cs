@@ -31,7 +31,7 @@ namespace MarsRover
 
         private Rover ExecuteSingleCommand(Command command)
         {
-            if (command.Equals(new Command('f')))
+            if (command == Command.ForwardCommand)
             {
                 return new Rover(Position.Forward());
             }
