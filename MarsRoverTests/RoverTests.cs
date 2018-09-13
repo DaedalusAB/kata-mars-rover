@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MarsRover;
 using Xunit;
 
@@ -6,12 +7,13 @@ namespace MarsRoverTests
 {
     public class RoverTests
     {
-        private PositionBuilder PositionBuilder { get; } = new PositionBuilder();
+        private PositionBuilder PositionBuilder => new PositionBuilder();
 
-        private RoverBuilder RoverBuilder { get; } = new RoverBuilder();
+        private RoverBuilder RoverBuilder => new RoverBuilder();
 
         [Theory]
         [InlineData(0, 0, DirectionEnum.North)]
+        [InlineData(1, 2, DirectionEnum.South)]
         public void CreateRoverAtPosition(int x, int y, DirectionEnum direction)
         {
             var initialPosition = PositionBuilder
@@ -24,6 +26,20 @@ namespace MarsRoverTests
                 .Build();
 
             Assert.Equal(initialPosition, rover.Position);
+        }
+
+        [Theory]
+        [InlineData("fblr")]
+        [InlineData("FBLR")]
+        public void RoverReceievesCommands(string commands)
+        {
+            var rover = RoverBuilder
+                .ARover()
+                .Build();
+
+            rover.ReceiveCommands(commands);
+
+            Assert.True(commands.GetCommands().SequenceEqual(rover.Commands));
         }
     }
 }
