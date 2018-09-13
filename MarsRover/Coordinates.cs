@@ -7,11 +7,13 @@ namespace MarsRover
     {
         public int X { get; }
         public int Y { get; }
+        public Grid Grid { get; }
 
-        public Coordinates(int x, int y)
+        public Coordinates(int x, int y, Grid grid)
         {
             X = x;
             Y = y;
+            Grid = grid;
         }
 
         protected override IEnumerable<object> GetAtomicValues()
@@ -22,7 +24,10 @@ namespace MarsRover
 
         public Coordinates Translate(int dx, int dy)
         {
-           return new Coordinates(X + dx, Y + dy);
+            var newX = (X + dx + Grid.Width) % Grid.Width;
+            var newY = (Y + dy + Grid.Height) % Grid.Height;
+
+            return new Coordinates(newX, newY, Grid);
         }
     }
 }

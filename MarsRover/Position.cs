@@ -8,17 +8,20 @@ namespace MarsRover
     {
         private Coordinates Coordinates { get; }
         private Direction Direction { get; }
+        public Grid Grid { get; }
 
-        public Position(Coordinates coordinates, Direction direction)
+        public Position(Coordinates coordinates, Direction direction, Grid grid)
         {
             Coordinates = coordinates;
             Direction = direction;
+            Grid = grid;
         }
 
         protected override IEnumerable<object> GetAtomicValues()
         {
             yield return Coordinates;
             yield return Direction;
+            yield return Grid;
         }
 
         public Position InFront()
@@ -33,17 +36,17 @@ namespace MarsRover
 
         public Position TurnRight()
         {
-           return new Position(Coordinates, Direction.TurnRight());
+           return new Position(Coordinates, Direction.TurnRight(), Grid);
         }
 
         public Position TurnLeft()
         {
-            return new Position(Coordinates, Direction.TurnLeft());
+            return new Position(Coordinates, Direction.TurnLeft(), Grid);
         }
 
         private Position Translate(int dx, int dy)
         {
-            return new Position(Coordinates.Translate(dx, dy), Direction);
+            return new Position(Coordinates.Translate(dx, dy), Direction, Grid);
         }
 
         private (int dx, int dy) CoordinatesChangeByDirection()

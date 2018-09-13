@@ -8,8 +8,8 @@ namespace MarsRoverTests
     public class RoverTests
     {
         private PositionBuilder PositionBuilder => new PositionBuilder();
-
         private RoverBuilder RoverBuilder => new RoverBuilder();
+        private GridBuilder GridBuilder = new GridBuilder();
 
         [Theory]
         [InlineData(0, 0, DirectionEnum.North)]
@@ -141,6 +141,43 @@ namespace MarsRoverTests
 
             var positionAfter = PositionBuilder
                 .Facing(directionAfter)
+                .Build();
+
+            Assert.Equal(positionAfter, roverAfter.Position);
+        }
+
+        [Theory]
+        [InlineData(2, 2, 0, 0, DirectionEnum.South, 0, 1, DirectionEnum.South)]
+        [InlineData(2, 2, 0, 0, DirectionEnum.West, 1, 0, DirectionEnum.West)]
+        [InlineData(2, 2, 0, 1, DirectionEnum.North, 0, 0, DirectionEnum.North)]
+        [InlineData(2, 2, 1, 0, DirectionEnum.East, 0, 0, DirectionEnum.East)]
+        public void RoverWrapsTheGrid(
+            int gridWidth, int gridHegith,
+            int xBefore, int yBefore, DirectionEnum directionBefore,
+            int xAfter, int yAfter, DirectionEnum directionAfter)
+        {
+            var grid = GridBuilder
+                .Width(gridWidth)
+                .Height(gridHegith)
+                .Build();
+
+            var positionBefore = PositionBuilder
+                .At(xBefore, yBefore)
+                .Facing(directionBefore)
+                .On(grid)
+                .Build();
+
+            var rover = RoverBuilder
+                .AtPosition(positionBefore)
+                .Build();
+
+            rover.ReceiveCommands("f");
+            var roverAfter = rover.ExecuteCommands();
+
+            var positionAfter = PositionBuilder
+                .At(xAfter, yAfter)
+                .Facing(directionAfter)
+                .On(grid)
                 .Build();
 
             Assert.Equal(positionAfter, roverAfter.Position);
